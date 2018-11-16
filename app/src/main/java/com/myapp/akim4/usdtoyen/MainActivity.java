@@ -1,33 +1,37 @@
-package com.example.akim4.usdtoyen;
+package com.myapp.akim4.usdtoyen;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends AppCompatActivity {
 
-    public void convertUsd(View view){
+    private AdView mAdView;
 
-    EditText editText = (EditText) findViewById(R.id.usdAmount);
+    public void convertUsd(View view) {
 
-    String amountInDollars = editText.getText().toString();
+        EditText editText = (EditText) findViewById(R.id.usdAmount);
 
-    double amountInDollarsDouble = Double.parseDouble(amountInDollars);
+        String amountInDollars = editText.getText().toString();
 
-    double amountInYenDouble = amountInDollarsDouble * 113.45;
+        double amountInDollarsDouble = Double.parseDouble(amountInDollars);
 
-    String amountInYenString = String.format("%.2f", amountInYenDouble);
+        double amountInYenDouble = amountInDollarsDouble * 113.45;
+
+        String amountInYenString = String.format("%.2f", amountInYenDouble);
 
         Toast.makeText(this, "$" + amountInDollars + " Dollars equals to ¥" + amountInYenString + " Yen", Toast.LENGTH_LONG).show();
 
     }
 
 
-    public void convertYen(View view){
+    public void convertYen(View view) {
 
-        EditText  editText = (EditText) findViewById(R.id.yenAmount);
+        EditText editText = (EditText) findViewById(R.id.yenAmount);
 
         String amountInYen = editText.getText().toString();
 
@@ -41,9 +45,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 }
