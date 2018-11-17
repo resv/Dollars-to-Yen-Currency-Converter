@@ -18,14 +18,20 @@ public class MainActivity extends AppCompatActivity {
 
         String amountInDollars = editText.getText().toString();
 
-        double amountInDollarsDouble = Double.parseDouble(amountInDollars);
+        if (amountInDollars.matches("")) {
 
-        double amountInYenDouble = amountInDollarsDouble * 113.45;
+            Toast.makeText(this,"Please enter an USD amount to convert", Toast.LENGTH_SHORT).show();
 
-        String amountInYenString = String.format("%.2f", amountInYenDouble);
+        } else {
 
-        Toast.makeText(this, "$" + amountInDollars + " Dollars equals to ¥" + amountInYenString + " Yen", Toast.LENGTH_LONG).show();
+            double amountInDollarsDouble = Double.parseDouble(amountInDollars);
 
+            double amountInYenDouble = amountInDollarsDouble * 113.45;
+
+            String amountInYenString = String.format("%.2f", amountInYenDouble);
+
+            Toast.makeText(this, "$" + amountInDollars + " Dollars equals to ¥" + amountInYenString + " Yen", Toast.LENGTH_LONG).show();
+        }
     }
 
 
@@ -35,13 +41,20 @@ public class MainActivity extends AppCompatActivity {
 
         String amountInYen = editText.getText().toString();
 
-        double amountInYenDouble = Double.parseDouble(amountInYen);
+        if(amountInYen.matches("")){
 
-        double amountInDollarsDouble = amountInYenDouble * 0.0088;
+            Toast.makeText(this,"Please enter a YEN amount to convert", Toast.LENGTH_SHORT).show();
 
-        String amountInDollarsString = String.format("%.2f", amountInDollarsDouble);
+        } else {
 
-        Toast.makeText(this, "¥" + amountInYen + " Yen equals to $" + amountInDollarsString + " Dollars", Toast.LENGTH_SHORT).show();
+            double amountInYenDouble = Double.parseDouble(amountInYen);
+
+            double amountInDollarsDouble = amountInYenDouble * 0.0088;
+
+            String amountInDollarsString = String.format("%.2f", amountInDollarsDouble);
+
+            Toast.makeText(this, "¥" + amountInYen + " Yen equals to $" + amountInDollarsString + " Dollars", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
