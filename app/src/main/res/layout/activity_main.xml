@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:onClick="convertUsd"
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="7dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:onClick="convertYen"
@@ -91,7 +91,7 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="320dp"
+        android:layout_width="wrap_content"
         android:layout_height="29dp"
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
@@ -110,7 +110,7 @@
     <TextView
         android:id="@+id/textView5"
         android:layout_width="320dp"
-        android:layout_height="43dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="4dp"
