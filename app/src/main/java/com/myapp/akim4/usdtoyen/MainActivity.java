@@ -7,32 +7,37 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AdView mAdView;
-
     private static final String TAG = "MainActivity";
+
+    private AdView mAdView;
 
     public void convertUsd(View view) {
 
         EditText editText = (EditText) findViewById(R.id.usdAmount);
 
-        String amountInDollars = editText.getText().toString();
+        String amountInDollarsString = editText.getText().toString();
 
-        if (amountInDollars.matches("")) {
+        if (amountInDollarsString.matches("")) {
 
-            Toast.makeText(this,"Please enter an USD amount to convert", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Enter $ (USD) amount to convert", Toast.LENGTH_SHORT).show();
 
         } else {
 
-            double amountInDollarsDouble = Double.parseDouble(amountInDollars);
+            double amountInDollarsDouble = Double.parseDouble(amountInDollarsString);
 
             double amountInYenDouble = amountInDollarsDouble * 113.45;
 
             String amountInYenString = String.format("%.2f", amountInYenDouble);
 
-            Toast.makeText(this, "$" + amountInDollars + " Dollars equals to ¥" + amountInYenString + " Yen", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "$" + amountInDollarsString + " (USD) equals to ¥" + amountInYenString + " (YEN)", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -41,21 +46,21 @@ public class MainActivity extends AppCompatActivity {
 
         EditText editText = (EditText) findViewById(R.id.yenAmount);
 
-        String amountInYen = editText.getText().toString();
+        String amountInYenString = editText.getText().toString();
 
-        if(amountInYen.matches("")){
+        if(amountInYenString.matches("")){
 
-            Toast.makeText(this,"Please enter a YEN amount to convert", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Enter ¥ (YEN) amount to convert", Toast.LENGTH_SHORT).show();
 
         } else {
 
-            double amountInYenDouble = Double.parseDouble(amountInYen);
+            double amountInYenDouble = Double.parseDouble(amountInYenString);
 
             double amountInDollarsDouble = amountInYenDouble * 0.0088;
 
             String amountInDollarsString = String.format("%.2f", amountInDollarsDouble);
 
-            Toast.makeText(this, "¥" + amountInYen + " Yen equals to $" + amountInDollarsString + " Dollars", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "¥" + amountInYenString + " (YEN) equals to $" + amountInDollarsString + " (USD)", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -67,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        MobileAds.initialize(this, "ca-app-pub-9665161606825012~7384360412");
 
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
