@@ -12,6 +12,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AdView mAdView;
 
+    private static final String TAG = "MainActivity";
+
     public void convertUsd(View view) {
 
         EditText editText = (EditText) findViewById(R.id.usdAmount);
