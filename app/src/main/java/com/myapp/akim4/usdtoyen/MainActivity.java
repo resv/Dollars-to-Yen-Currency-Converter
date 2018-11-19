@@ -15,7 +15,6 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
 
     private AdView mAdView;
 
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
             String amountInYenString = String.format("%.2f", amountInYenDouble);
 
-            Toast.makeText(this, "$" + amountInDollarsString + " (USD) equals to ¥" + amountInYenString + " (YEN)", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "$" + amountInDollarsString + " (USD) equals to ¥" + amountInYenString + " (JPY)", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(amountInYenString.matches("")){
 
-            Toast.makeText(this,"Enter ¥ (YEN) amount to convert", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Enter ¥ (JPY) amount to convert", Toast.LENGTH_SHORT).show();
 
         } else {
 
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
             String amountInDollarsString = String.format("%.2f", amountInDollarsDouble);
 
-            Toast.makeText(this, "¥" + amountInYenString + " (YEN) equals to $" + amountInDollarsString + " (USD)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "¥" + amountInYenString + " (JPY) equals to $" + amountInDollarsString + " (USD)", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -72,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MobileAds.initialize(this, "ca-app-pub-9665161606825012~7384360412");
+        MobileAds.initialize(this, "ca-app-pub-9665161606825012/3253543710");
 
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();

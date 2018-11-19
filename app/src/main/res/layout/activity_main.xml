@@ -88,7 +88,7 @@
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
         android:ems="10"
-        android:hint="Enter ¥ (YEN)"
+        android:hint="Enter ¥ (JPY)"
         android:inputType="numberDecimal"
         ads:layout_constraintEnd_toStartOf="@+id/convertYenButton"
         ads:layout_constraintHorizontal_bias="0.5"
@@ -171,6 +171,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
         android:layout_width="320dp"
         android:layout_height="50dp"
@@ -181,11 +182,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-9665161606825012~7384360412"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
         ads:layout_constraintBottom_toBottomOf="parent"
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintHorizontal_bias="0.493"
-        ads:layout_constraintStart_toStartOf="parent"></com.google.android.gms.ads.AdView>
+        ads:layout_constraintStart_toStartOf="parent">
+    </com.google.android.gms.ads.AdView>
 
 </android.support.constraint.ConstraintLayout>
 
