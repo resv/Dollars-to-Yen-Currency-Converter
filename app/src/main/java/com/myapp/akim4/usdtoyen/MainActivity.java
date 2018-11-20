@@ -15,9 +15,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,14 +26,12 @@ public class MainActivity extends AppCompatActivity {
         private String usdRate;
         private String jpyRate;
 
-
     //END OF INITIALIZATION OF GLOBAL VARIABLES
 
+    //---------------------------------------------------------------------------------------//
 
-
-    // START OF JSON API CODE
-
-    static class DownloadJsonData extends AsyncTask<String,Void,String>{
+    // START OF USD JSON API CODE
+    static class downloadUSDJsonData extends AsyncTask<String,Void,String>{
 
         @Override
         protected String doInBackground(String... urls){
@@ -66,30 +61,76 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // ALLOWS YOU TO WRITE CODE/GIVE INSTRUCTIONS AFTER ABOVE CODE HAS FINISHED RUNNING
+        // ALLOWS YOU TO WRITE CODE/GIVE INSTRUCTIONS AFTER ABOVE CODE HAS FINISHED RUNNING (s can be renamed to anything)
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
             //TEST TO CHECK IF JSON DATA HAS BEEN FETCHED, COMMENT OR DELETE OUT FOR RELEASE
             Log.i("JSON", s);
+//
+//            try {
+//                JSONObject jsonObject = new JSONObject(s);
+
+//            } catch (Exception e){
+//                e.printStackTrace();
+//            }
         }
     }
+    // END OF USD JSON API CODE
 
+    //---------------------------------------------------------------------------------------//
 
+    // START OF JPY JSON API CODE
+    static class downloadJPYJsonData extends AsyncTask<String,Void,String>{
 
+        @Override
+        protected String doInBackground(String... urls){
+            String result ="";
+            URL url;
+            HttpURLConnection urlConnection = null;
 
+            try{
 
+                url = new URL(urls[0]);
+                urlConnection = (HttpURLConnection) url.openConnection();
+                InputStream in = urlConnection.getInputStream();
+                InputStreamReader reader = new InputStreamReader(in);
+                int data = reader.read();
 
+                while (data != -1){
+                    char current = (char) data;
+                    result += current;
+                    data = reader.read();
+                }
 
+                return result;
 
-    // END OF JSON API CODE
+            } catch (Exception e){
+                e.printStackTrace();
+                return null;
+            }
+        }
 
+        // ALLOWS YOU TO WRITE CODE/GIVE INSTRUCTIONS AFTER ABOVE CODE HAS FINISHED RUNNING (s can be renamed to anything)
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
 
+            //TEST TO CHECK IF JSON DATA HAS BEEN FETCHED, COMMENT OR DELETE OUT FOR RELEASE
+            Log.i("JSON", s);
+//
+//            try {
+//                JSONObject jsonObject = new JSONObject(s);
 
+//            } catch (Exception e){
+//                e.printStackTrace();
+//            }
+        }
+    }
+    // END OF JPY JSON API CODE
 
-
-
+    //---------------------------------------------------------------------------------------//
 
     // START OF (USD) CONVERSION
     public void convertUsd(View view) {
@@ -123,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
     }
     // END OF (USD) CONVERSION
 
-    //-------------------------------------------------------------------------------------//
+    //---------------------------------------------------------------------------------------//
 
     // START OF (JPY) CONVERSION
     public void convertYen(View view) {
@@ -157,18 +198,18 @@ public class MainActivity extends AppCompatActivity {
     }
     // END OF (JPY) CONVERSION
 
-
-
+    //---------------------------------------------------------------------------------------//
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // JSON INSTANTIATION, ENTER API URL
-        DownloadJsonData getJPYRate = new DownloadJsonData();
+        // JSON INSTANTIATION, ENTER API URLS
+        downloadJPYJsonData getJPYRate = new downloadJPYJsonData();
         getJPYRate.execute("https://ratesapi.io/api/latest?base=JPY");
 
-        DownloadJsonData getUSDRate = new DownloadJsonData();
+        downloadUSDJsonData getUSDRate = new downloadUSDJsonData();
         getUSDRate.execute("https://ratesapi.io/api/latest?base=USD");
 
 
