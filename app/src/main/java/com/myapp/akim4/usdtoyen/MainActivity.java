@@ -24,42 +24,38 @@ public class MainActivity extends AppCompatActivity {
 
     //START OF INITIALIZING GLOBAL VARIABLES
 
-        //ADMOB VARIABLE
-        private AdView mAdView;
-        private String date;
-        static private String usdRate;
-        static private String jpyRate;
+    //ADMOB VARIABLE
+    private AdView mAdView;
+    private String date;
+    static private Double usdJSON;
+    static private Double jpyJSON;
 
     //END OF INITIALIZATION OF GLOBAL VARIABLES
 
     //---------------------------------------------------------------------------------------//
 
     // START OF USD JSON API CODE
-    static class downloadUSDJsonData extends AsyncTask<String,Void,String>{
+    static class downloadUSDJsonData extends AsyncTask<String, Void, String> {
 
         @Override
-        protected String doInBackground(String... urls){
-            String result ="";
+        protected String doInBackground(String... urls) {
+            String result = "";
             URL url;
             HttpURLConnection urlConnection = null;
-
-            try{
-
+            try {
                 url = new URL(urls[0]);
                 urlConnection = (HttpURLConnection) url.openConnection();
                 InputStream in = urlConnection.getInputStream();
                 InputStreamReader reader = new InputStreamReader(in);
                 int data = reader.read();
 
-                while (data != -1){
+                while (data != -1) {
                     char current = (char) data;
                     result += current;
                     data = reader.read();
                 }
-
                 return result;
-
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 return null;
             }
@@ -75,30 +71,22 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 JSONObject jsonObject = new JSONObject(s);
-//
+
                 JSONObject rateInfo = jsonObject.getJSONObject("rates");
 
                 JSONArray rateArr = rateInfo.toJSONArray(rateInfo.names());
 
 
-                for (int i = 0; i < rateArr.length(); i++){
+                for (int i = 0; i < rateArr.length(); i++) {
 
-                    Double jpyObj = rateArr.getDouble(17);
-
-                    String result = String.valueOf(jpyObj);
-
-
-//                    String jpyRateTest = jpyObj.getString("JPY");
-//
-//                    jpyRate = String.valueOf(jpyRateDouble);
-//
-                    Log.i("JSON", result);
-
+                //FOR LOG TESTING PURPOSES
+                    //Double jpyObj = rateArr.getDouble(17);
+                    //String jpyRate = String.valueOf(jpyObj);
+                    //Log.i("JSON", jpyRate);
+                //Actual JSON data fetching
+                    jpyJSON = rateArr.getDouble(17);
                 }
-
-
-
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -108,31 +96,27 @@ public class MainActivity extends AppCompatActivity {
     //---------------------------------------------------------------------------------------//
 
     // START OF JPY JSON API CODE
-    static class downloadJPYJsonData extends AsyncTask<String,Void,String>{
+    static class downloadJPYJsonData extends AsyncTask<String, Void, String> {
 
         @Override
-        protected String doInBackground(String... urls){
-            String result ="";
+        protected String doInBackground(String... urls) {
+            String result = "";
             URL url;
             HttpURLConnection urlConnection = null;
-
-            try{
-
+            try {
                 url = new URL(urls[0]);
                 urlConnection = (HttpURLConnection) url.openConnection();
                 InputStream in = urlConnection.getInputStream();
                 InputStreamReader reader = new InputStreamReader(in);
                 int data = reader.read();
 
-                while (data != -1){
+                while (data != -1) {
                     char current = (char) data;
                     result += current;
                     data = reader.read();
                 }
-
                 return result;
-
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 return null;
             }
@@ -146,103 +130,118 @@ public class MainActivity extends AppCompatActivity {
             //TEST TO CHECK IF JSON DATA HAS BEEN FETCHED, COMMENT OR DELETE OUT FOR RELEASE
             Log.i("JSON", s);
 //
-//            try {
-//                JSONObject jsonObject = new JSONObject(s);
+            try {
+                JSONObject jsonObject = new JSONObject(s);
 
-//            } catch (Exception e){
-//                e.printStackTrace();
-//            }
+                JSONObject rateInfo = jsonObject.getJSONObject("rates");
+
+                JSONArray rateArr = rateInfo.toJSONArray(rateInfo.names());
+
+                for (int i = 0; i < rateArr.length(); i++) {
+
+                //FOR LOG TESTING PURPOSES
+                    //Double usdObj = rateArr.getDouble(30);
+                    //String usdRate = String.valueOf(usdObj);
+                    //Log.i("JSON", usdRate);
+                // Actual JSON data fetching
+                    usdJSON = rateArr.getDouble(30);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
-    // END OF JPY JSON API CODE
+        // END OF JPY JSON API CODE
 
-    //---------------------------------------------------------------------------------------//
+        //---------------------------------------------------------------------------------------//
 
-    // START OF (USD) CONVERSION
-    public void convertUsd(View view) {
+        // START OF (USD) CONVERSION
+        public void convertUsd(View view) {
 
-        // GETS INPUT VALUE OF DOLLARS AMOUNT FROM USER
-        EditText editText = (EditText) findViewById(R.id.usdAmount);
+            // GETS INPUT VALUE OF DOLLARS AMOUNT FROM USER
+            EditText editText = (EditText) findViewById(R.id.usdAmount);
 
-        // CONVERTS DOLLARS AMOUNT INTO A STRING FOR USABILITY
-        String amountInDollarsString = editText.getText().toString();
+            // CONVERTS DOLLARS AMOUNT INTO A STRING FOR USABILITY
+            String amountInDollarsString = editText.getText().toString();
 
-        // CHECK IF NULL VALUES WAS GIVEN
-        if (amountInDollarsString.matches("")) {
+            // CHECK IF NULL VALUES WAS GIVEN
+            if (amountInDollarsString.matches("")) {
 
-            // TOAST TO USER IF USD CONVERT BUTTON WAS PRESSED WITH NULL VALUES
-            Toast.makeText(this,"Enter $ (USD) amount to convert", Toast.LENGTH_SHORT).show();
+                // TOAST TO USER IF USD CONVERT BUTTON WAS PRESSED WITH NULL VALUES
+                Toast.makeText(this, "Enter $ (USD) amount to convert", Toast.LENGTH_SHORT).show();
 
-        } else {
+            } else {
 
-            // CAST USD AMOUNT TO A DOUBLE FOR USABILITY
-            double amountInDollarsDouble = Double.parseDouble(amountInDollarsString);
+                // CAST USD AMOUNT TO A DOUBLE FOR USABILITY
+                double amountInDollarsDouble = Double.parseDouble(amountInDollarsString);
 
-            // FORMULA FOR USD AMOUNT INTO YEN AMOUNT DOUBLE
-            double amountInYenDouble = amountInDollarsDouble * 113.45;
+                // FORMULA FOR USD AMOUNT INTO YEN AMOUNT DOUBLE
+                double amountInYenDouble = amountInDollarsDouble * jpyJSON;
 
-            // CONVERT YEN AMOUNT INTO A STRING FOR USABILITY, ADD DECIMAL WITH LIMIT TO THE THOUSANDTHS PLACE
-            String amountInYenString = String.format("%.2f", amountInYenDouble);
+                // CONVERT YEN AMOUNT INTO A STRING FOR USABILITY, ADD DECIMAL WITH LIMIT TO THE THOUSANDTHS PLACE
+                String amountInYenString = String.format("%.2f", amountInYenDouble);
 
-            // TOAST USD TO JPY CONVERSION RESULT TO USER
-            Toast.makeText(this, "$" + amountInDollarsString + " (USD) equals to ¥" + amountInYenString + " (JPY)", Toast.LENGTH_LONG).show();
+                // TOAST USD TO JPY CONVERSION RESULT TO USER
+                Toast.makeText(this, "$" + amountInDollarsString + " (USD) equals to ¥" + amountInYenString + " (JPY)", Toast.LENGTH_LONG).show();
+            }
+        }
+        // END OF (USD) CONVERSION
+
+        //---------------------------------------------------------------------------------------//
+
+        // START OF (JPY) CONVERSION
+        public void convertYen(View view) {
+
+            // GETS INPUT VALUE OF YEN AMOUNT FROM USER
+            EditText editText = (EditText) findViewById(R.id.yenAmount);
+
+            // CONVERTS YEN AMOUNT INTO A STRING FOR USABILITY
+            String amountInYenString = editText.getText().toString();
+
+            // CHECK IF NULL VALUES WAS GIVEN
+            if (amountInYenString.matches("")) {
+
+                // TOAST TO USER IF JPY CONVERT BUTTON WAS PRESSED WITH NULL VALUES
+                Toast.makeText(this, "Enter ¥ (JPY) amount to convert", Toast.LENGTH_SHORT).show();
+
+            } else {
+
+                // CAST YEN AMOUNT TO A DOUBLE FOR USABILITY
+                double amountInYenDouble = Double.parseDouble(amountInYenString);
+
+                // FORMULA FOR YEN AMOUNT INTO DOLLARS AMOUNT DOUBLE
+                double amountInDollarsDouble = amountInYenDouble * usdJSON;
+
+                // CONVERT DOLLARS AMOUNT INTO A STRING FOR USABILITY, ADD DECIMAL WITH LIMIT TO THE THOUSANDTHS PLACE
+                String amountInDollarsString = String.format("%.2f", amountInDollarsDouble);
+
+                // TOAST JPY TO USD CONVERSION RESULT TO USER
+                Toast.makeText(this, "¥" + amountInYenString + " (JPY) equals to $" + amountInDollarsString + " (USD)", Toast.LENGTH_SHORT).show();
+            }
+        }
+        // END OF (JPY) CONVERSION
+
+        //---------------------------------------------------------------------------------------//
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+
+            // JSON INSTANTIATION, ENTER API URLS
+            downloadUSDJsonData getUSDRate = new downloadUSDJsonData();
+            getUSDRate.execute("https://ratesapi.io/api/latest?base=USD");
+
+            downloadJPYJsonData getJPYRate = new downloadJPYJsonData();
+            getJPYRate.execute("https://ratesapi.io/api/latest?base=JPY");
+
+
+            // ADBMOD INSTANTIATION
+            MobileAds.initialize(this, "ca-app-pub-9665161606825012/3253543710");
+            mAdView = findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
         }
     }
-    // END OF (USD) CONVERSION
-
-    //---------------------------------------------------------------------------------------//
-
-    // START OF (JPY) CONVERSION
-    public void convertYen(View view) {
-
-        // GETS INPUT VALUE OF YEN AMOUNT FROM USER
-        EditText editText = (EditText) findViewById(R.id.yenAmount);
-
-        // CONVERTS YEN AMOUNT INTO A STRING FOR USABILITY
-        String amountInYenString = editText.getText().toString();
-
-        // CHECK IF NULL VALUES WAS GIVEN
-        if(amountInYenString.matches("")){
-
-            // TOAST TO USER IF JPY CONVERT BUTTON WAS PRESSED WITH NULL VALUES
-            Toast.makeText(this,"Enter ¥ (JPY) amount to convert", Toast.LENGTH_SHORT).show();
-
-        } else {
-
-            // CAST YEN AMOUNT TO A DOUBLE FOR USABILITY
-            double amountInYenDouble = Double.parseDouble(amountInYenString);
-
-            // FORMULA FOR YEN AMOUNT INTO DOLLARS AMOUNT DOUBLE
-            double amountInDollarsDouble = amountInYenDouble * 0.0088;
-
-            // CONVERT DOLLARS AMOUNT INTO A STRING FOR USABILITY, ADD DECIMAL WITH LIMIT TO THE THOUSANDTHS PLACE
-            String amountInDollarsString = String.format("%.2f", amountInDollarsDouble);
-
-            // TOAST JPY TO USD CONVERSION RESULT TO USER
-            Toast.makeText(this, "¥" + amountInYenString + " (JPY) equals to $" + amountInDollarsString + " (USD)", Toast.LENGTH_SHORT).show();
-        }
-    }
-    // END OF (JPY) CONVERSION
-
-    //---------------------------------------------------------------------------------------//
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        // JSON INSTANTIATION, ENTER API URLS
-        downloadUSDJsonData getUSDRate = new downloadUSDJsonData();
-        getUSDRate.execute("https://ratesapi.io/api/latest?base=USD");
-
-        downloadJPYJsonData getJPYRate = new downloadJPYJsonData();
-        getJPYRate.execute("https://ratesapi.io/api/latest?base=JPY");
 
 
-        // ADBMOD INSTANTIATION
-        MobileAds.initialize(this, "ca-app-pub-9665161606825012/3253543710");
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-    }
-}
