@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     //START OF INITIALIZING GLOBAL VARIABLES
         //ADMOB VARIABLE
         private AdView mAdView;
-        private String date;
+        static String dateJSON;
         static private Double usdJSON;
         static private Double jpyJSON;
     //END OF INITIALIZATION OF GLOBAL VARIABLES
@@ -88,8 +88,6 @@ public class MainActivity extends AppCompatActivity {
                     //Double jpyObj = rateArr.getDouble(17);
                     //String jpyRate = String.valueOf(jpyObj);
                     //Log.i("JSON", jpyRate);
-                //Actual JSON data fetching
-                    //jpyJSON = rateArr.getDouble(17);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -143,17 +141,26 @@ public class MainActivity extends AppCompatActivity {
                 JSONArray rateArr = rateInfo.toJSONArray(rateInfo.names());
 
                 usdJSON = rateArr.getDouble(30);
-                
+
                 TextView liveUSDValue = (TextView) findViewById(R.id.liveUSDValue);
                 String liveUSDValueString = String.valueOf(usdJSON);
                 liveUSDValue.setText(liveUSDValueString);
+
+                    //LIVE DATE VALUE, ONLY NEEDED ONCE SO IT EXISTS IN THE JPY ASYNC
+                        //ENCAPSULATES THE DATE VALUE INTO A VARIABLE
+                        dateJSON = jsonObject.getString("date");
+                        //INITIALIZES THE TEXTVIEW AND INSERTS THE JSON DATE VALUE
+                        TextView liveDateValue = (TextView) findViewById(R.id.liveDateValue);
+                        String liveDateValueString = String.valueOf(dateJSON);
+                        liveDateValue.setText(liveDateValueString);
+
+
 
                 //FOR LOG TESTING PURPOSES
                     //Double usdObj = rateArr.getDouble(30);
                     //String usdRate = String.valueOf(usdObj);
                     //Log.i("JSON", usdRate);
                 // Actual JSON data fetching
-                    //usdJSON = rateArr.getDouble(30);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -228,10 +235,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     // END OF (JPY) CONVERSION
-
-
-
-
+    
     //---------------------------------------------------------------------------------------//
 
     //ONCREATE
@@ -248,22 +252,6 @@ public class MainActivity extends AppCompatActivity {
                 //JPY BASE JSON
                 downloadJPYJsonData getJPYRate = new downloadJPYJsonData();
                 getJPYRate.execute("https://ratesapi.io/api/latest?base=JPY");
-            //END OF JSON INSTANTIATION, ENTER API URLS
-
-            //START OF TEXTVIEW INITIALIZERS
-
-                //DATE
-
-                //JPY VALUE TEXTVIEW
-//                TextView liveJPYValue = (TextView) findViewById(R.id.liveJPYValue);
-//                String liveJPYValueString = String.valueOf(jpyJSON);
-//                liveJPYValue.setText(liveJPYValueString);
-
-                //USD VALUE TEXTVIEW
-//                TextView liveUSDValue = (TextView) findViewById(R.id.liveUSDValue);
-//                String liveUSDValueString = String.valueOf(usdJSON);
-//                liveUSDValue.setText(liveUSDValueString);
-            //END OF TEXTVIEW INITIALIZERS
 
             // ADBMOD INSTANTIATION
             MobileAds.initialize(this, "ca-app-pub-9665161606825012/3253543710");
