@@ -27,14 +27,14 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
     //START OF INITIALIZING GLOBAL VARIABLES
-        //ADMOB VARIABLE
-        private AdView mAdView;
-        static String dateJSON;
-        static private Double usdJSON;
-        static private Double jpyJSON;
-    //END OF INITIALIZATION OF GLOBAL VARIABLES
+    private AdView mAdView;
+    static String dateJSON;
+    static private Double usdJSON;
+    static private Double jpyJSON;
+    public String jpyValuePrefix;
+    public String usdValuePrefix;
 
-    //---------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------------------//
 
     // START OF USD BASE, LOOKS FOR JPY JSON API CODE
     public class downloadUSDJsonData extends AsyncTask<String, Void, String> {
@@ -80,9 +80,13 @@ public class MainActivity extends AppCompatActivity {
 
                 jpyJSON = rateArr.getDouble(17);
 
-                TextView liveJPYValue = (TextView) findViewById(R.id.liveJPYValue);
-                String liveJPYValueString = String.valueOf(jpyJSON);
-                liveJPYValue.setText(liveJPYValueString);
+                    //INITIALIZING liveJPYValue TEXTVIEW DURING POST EXECUTE
+                    TextView liveJPYValue = (TextView) findViewById(R.id.liveJPYValue);
+                    String liveJPYValueString = String.valueOf(jpyJSON);
+
+                        //IN ORDER TO CONCAT IN setText WE ENCAPSULATE STRINGS
+                        jpyValuePrefix = ("$1 = ¥" + liveJPYValueString);
+                        liveJPYValue.setText(jpyValuePrefix);
 
                 //FOR LOG TESTING PURPOSES
                     //Double jpyObj = rateArr.getDouble(17);
@@ -96,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
     }
     // END OF USD BASE, LOOKS FOR JPY JSON API CODE
 
-    //---------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------------------//
 
     // START OF JPY BASE, LOOKS FOR USD JSON API CODE
     public class downloadJPYJsonData extends AsyncTask<String, Void, String> {
@@ -146,15 +150,17 @@ public class MainActivity extends AppCompatActivity {
                 String liveUSDValueString = String.valueOf(usdJSON);
                 liveUSDValue.setText(liveUSDValueString);
 
+                    //INITIALIZES THE TEXTVIEW AND INSERTS THE JSON DATE VALUE
+                    TextView liveDateValue = (TextView) findViewById(R.id.liveDateValue);
+                    String liveDateValueString = String.valueOf(dateJSON);
+
+                    //IN ORDER TO CONCAT IN setText WE ENCAPSULATE STRINGS
+                    usdValuePrefix = ("¥1 = $" + liveUSDValueString);
+                    liveUSDValue.setText(usdValuePrefix);
+
                     //LIVE DATE VALUE, ONLY NEEDED ONCE SO IT EXISTS IN THE JPY ASYNC
                         //ENCAPSULATES THE DATE VALUE INTO A VARIABLE
                         dateJSON = jsonObject.getString("date");
-                        //INITIALIZES THE TEXTVIEW AND INSERTS THE JSON DATE VALUE
-                        TextView liveDateValue = (TextView) findViewById(R.id.liveDateValue);
-                        String liveDateValueString = String.valueOf(dateJSON);
-                        liveDateValue.setText(liveDateValueString);
-
-
 
                 //FOR LOG TESTING PURPOSES
                     //Double usdObj = rateArr.getDouble(30);
@@ -166,9 +172,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-        // END OF JPY BASE, LOOKS FOR USD JSON API CODE
+    // END OF JPY BASE, LOOKS FOR USD JSON API CODE
 
-     //---------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------------------//
 
     // START OF (USD) CONVERSION
     public void convertUsd(View view) {
@@ -202,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
     }
     // END OF (USD) CONVERSION
 
-    //---------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------------------//
 
     // START OF (JPY) CONVERSION
     public void convertYen(View view) {
@@ -235,8 +241,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     // END OF (JPY) CONVERSION
-    
-    //---------------------------------------------------------------------------------------//
+
+//---------------------------------------------------------------------------------------//
 
     //ONCREATE
         @Override
