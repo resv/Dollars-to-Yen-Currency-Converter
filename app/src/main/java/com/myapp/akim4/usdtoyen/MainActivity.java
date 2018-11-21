@@ -246,12 +246,12 @@ public class MainActivity extends AppCompatActivity {
                 //DATE
 
                 //USD VALUE TEXTVIEW
-                final TextView liveUSDValue = (TextView) findViewById(R.id.liveUSDValue);
+                TextView liveUSDValue = (TextView) findViewById(R.id.liveUSDValue);
                 String liveUSDValueString = String.valueOf(usdJSON);
                 liveUSDValue.setText(liveUSDValueString);
 
                 //JPY VALUE TEXTVIEW
-                final TextView liveJPYValue = (TextView) findViewById(R.id.liveJPYValue);
+                TextView liveJPYValue = (TextView) findViewById(R.id.liveJPYValue);
                 String liveJPYValueString = String.valueOf(jpyJSON);
                 liveJPYValue.setText(liveJPYValueString);
 
