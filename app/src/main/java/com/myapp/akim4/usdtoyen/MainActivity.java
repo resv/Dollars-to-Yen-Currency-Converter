@@ -28,11 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     //START OF INITIALIZING GLOBAL VARIABLES
     private AdView mAdView;
-    static String dateJSON;
-    static private Double usdJSON;
-    static private Double jpyJSON;
-    public String jpyValuePrefix;
-    public String usdValuePrefix;
+    public Double usdJSON;
+    public Double jpyJSON;
 
 //---------------------------------------------------------------------------------------//
 
@@ -68,30 +65,28 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            //TEST TO CHECK IF JSON DATA HAS BEEN FETCHED, COMMENT OR DELETE OUT FOR RELEASE
-            //Log.i("JSON", s);
-
             try {
+                //CREATE JSON OBJECT VARIABLE FROM THE JDON DATA
                 JSONObject jsonObject = new JSONObject(s);
 
+                //CREATE JSON OBJECT OF SPECIFIC DATA BY PARAMETER
                 JSONObject rateInfo = jsonObject.getJSONObject("rates");
 
+                //CREATE JSON ARRAY TO EXTRACT DATA
                 JSONArray rateArr = rateInfo.toJSONArray(rateInfo.names());
 
+                //EXTRACT ELEMENT FROM JSON ARRAY
                 jpyJSON = rateArr.getDouble(17);
 
-                    //INITIALIZING liveJPYValue TEXTVIEW DURING POST EXECUTE
+                    //INITIALIZING liveJPYValue TEXTVIEW
                     TextView liveJPYValue = (TextView) findViewById(R.id.liveJPYValue);
+
+                    //CREATING STRING WITH JSON VALUE, THEN CONCAT INTO ONE STRING
                     String liveJPYValueString = String.valueOf(jpyJSON);
+                    String jpyValuePrefix = ("$1 = ¥" + liveJPYValueString);
 
-                        //IN ORDER TO CONCAT IN setText WE ENCAPSULATE STRINGS
-                        jpyValuePrefix = ("$1 = ¥" + liveJPYValueString);
-                        liveJPYValue.setText(jpyValuePrefix);
-
-                //FOR LOG TESTING PURPOSES
-                    //Double jpyObj = rateArr.getDouble(17);
-                    //String jpyRate = String.valueOf(jpyObj);
-                    //Log.i("JSON", jpyRate);
+                    //SET VALUE USING THE CONCAT STRINGS
+                    liveJPYValue.setText(jpyValuePrefix);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -134,39 +129,45 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            //TEST TO CHECK IF JSON DATA HAS BEEN FETCHED, COMMENT OR DELETE OUT FOR RELEASE
-            //Log.i("JSON", s);
-//
             try {
+                //CREATE JSON OBJECT VARIABLE FROM THE JSON DATA
                 JSONObject jsonObject = new JSONObject(s);
 
+                //CREATE JSON OBJECT OF SPECIFIC DATA BY PARAMETER
                 JSONObject rateInfo = jsonObject.getJSONObject("rates");
 
+                //CREATE JSON ARRAY TO EXTRACT DATA
                 JSONArray rateArr = rateInfo.toJSONArray(rateInfo.names());
 
+                //EXTRACT ELEMENT FROM JSON ARRAY FOR CONVERSION FUNCTION
                 usdJSON = rateArr.getDouble(30);
 
-                TextView liveUSDValue = (TextView) findViewById(R.id.liveUSDValue);
-                String liveUSDValueString = String.valueOf(usdJSON);
-                liveUSDValue.setText(liveUSDValueString);
+                    //INITIALIZING liveUSDValue TEXTVIEW
+                    TextView liveUSDValue = (TextView) findViewById(R.id.liveUSDValue);
 
-                    //INITIALIZES THE TEXTVIEW AND INSERTS THE JSON DATE VALUE
-                    TextView liveDateValue = (TextView) findViewById(R.id.liveDateValue);
-                    String liveDateValueString = String.valueOf(dateJSON);
+                    //CREATING STRING WITH JSON VALUE, THEN CONCAT INTO ONE STRING
+                    String liveUSDValueString = String.valueOf(usdJSON);
+                    String usdValuePrefix = ("¥1 = $" + liveUSDValueString);
 
-                    //IN ORDER TO CONCAT IN setText WE ENCAPSULATE STRINGS
-                    usdValuePrefix = ("¥1 = $" + liveUSDValueString);
+                    //SET VALUE USING THE CONCAT STRINGS
                     liveUSDValue.setText(usdValuePrefix);
 
-                    //LIVE DATE VALUE, ONLY NEEDED ONCE SO IT EXISTS IN THE JPY ASYNC
-                        //ENCAPSULATES THE DATE VALUE INTO A VARIABLE
-                        dateJSON = jsonObject.getString("date");
+                //---------------------------------------------------------------//
+                    //DATE JSON API
+                        //CREATE STRING VARIABLE FROM THE JSON DATA, (CAST TO STRING)
+                        String dateJSON = jsonObject.getString("date");
 
-                //FOR LOG TESTING PURPOSES
-                    //Double usdObj = rateArr.getDouble(30);
-                    //String usdRate = String.valueOf(usdObj);
-                    //Log.i("JSON", usdRate);
-                // Actual JSON data fetching
+                        //INITIALIZES liveDateValue TEXTVIEW AND CREATE DATE STRING VALUE
+                        TextView liveDateValue = (TextView) findViewById(R.id.liveDateValue);
+
+                        //CREATING STRING WITH JSON VALUE, THEN CONCAT INTO ONE STRING
+                        String liveDateValueString = String.valueOf(dateJSON);
+                        String dateValuePrefix = ("Last updated on: " + liveDateValueString);
+
+                        //SET VALUE USING THE CONCAT STRINGS
+                        liveDateValue.setText(dateValuePrefix);
+                //---------------------------------------------------------------//
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -255,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
                 downloadUSDJsonData getUSDRate = new downloadUSDJsonData();
                 getUSDRate.execute("https://ratesapi.io/api/latest?base=USD");
 
-                //JPY BASE JSON
+                //JPY BASE JSON (AND DATE)
                 downloadJPYJsonData getJPYRate = new downloadJPYJsonData();
                 getJPYRate.execute("https://ratesapi.io/api/latest?base=JPY");
 
@@ -264,8 +265,6 @@ public class MainActivity extends AppCompatActivity {
             mAdView = findViewById(R.id.adView);
             AdRequest adRequest = new AdRequest.Builder().build();
             mAdView.loadAd(adRequest);
-
-
         }
     }
 
