@@ -11,8 +11,12 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -23,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         //ADMOB VARIABLE
         private AdView mAdView;
         private String date;
-        private String usdRate;
-        private String jpyRate;
+        static private String usdRate;
+        static private String jpyRate;
 
     //END OF INITIALIZATION OF GLOBAL VARIABLES
 
@@ -68,13 +72,35 @@ public class MainActivity extends AppCompatActivity {
 
             //TEST TO CHECK IF JSON DATA HAS BEEN FETCHED, COMMENT OR DELETE OUT FOR RELEASE
             Log.i("JSON", s);
-//
-//            try {
-//                JSONObject jsonObject = new JSONObject(s);
 
-//            } catch (Exception e){
-//                e.printStackTrace();
-//            }
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+//
+                JSONObject rateInfo = jsonObject.getJSONObject("rates");
+
+                JSONArray rateArr = rateInfo.toJSONArray(rateInfo.names());
+
+
+                for (int i = 0; i < rateArr.length(); i++){
+
+                    Double jpyObj = rateArr.getDouble(17);
+
+                    String result = String.valueOf(jpyObj);
+
+
+//                    String jpyRateTest = jpyObj.getString("JPY");
+//
+//                    jpyRate = String.valueOf(jpyRateDouble);
+//
+                    Log.i("JSON", result);
+
+                }
+
+
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
     // END OF USD JSON API CODE
@@ -199,18 +225,18 @@ public class MainActivity extends AppCompatActivity {
     // END OF (JPY) CONVERSION
 
     //---------------------------------------------------------------------------------------//
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         // JSON INSTANTIATION, ENTER API URLS
-        downloadJPYJsonData getJPYRate = new downloadJPYJsonData();
-        getJPYRate.execute("https://ratesapi.io/api/latest?base=JPY");
-
         downloadUSDJsonData getUSDRate = new downloadUSDJsonData();
         getUSDRate.execute("https://ratesapi.io/api/latest?base=USD");
+
+        downloadJPYJsonData getJPYRate = new downloadJPYJsonData();
+        getJPYRate.execute("https://ratesapi.io/api/latest?base=JPY");
 
 
         // ADBMOD INSTANTIATION
