@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -153,76 +154,80 @@ public class MainActivity extends AppCompatActivity {
     }
         // END OF JPY JSON API CODE
 
-        //---------------------------------------------------------------------------------------//
+     //---------------------------------------------------------------------------------------//
 
-        // START OF (USD) CONVERSION
-        public void convertUsd(View view) {
+    // START OF (USD) CONVERSION
+    public void convertUsd(View view) {
 
-            // GETS INPUT VALUE OF DOLLARS AMOUNT FROM USER
-            EditText editText = (EditText) findViewById(R.id.usdAmount);
+        // GETS INPUT VALUE OF DOLLARS AMOUNT FROM USER
+        EditText editText = (EditText) findViewById(R.id.usdAmount);
 
-            // CONVERTS DOLLARS AMOUNT INTO A STRING FOR USABILITY
-            String amountInDollarsString = editText.getText().toString();
+        // CONVERTS DOLLARS AMOUNT INTO A STRING FOR USABILITY
+        String amountInDollarsString = editText.getText().toString();
 
-            // CHECK IF NULL VALUES WAS GIVEN
-            if (amountInDollarsString.matches("")) {
+        // CHECK IF NULL VALUES WAS GIVEN
+        if (amountInDollarsString.matches("")) {
 
-                // TOAST TO USER IF USD CONVERT BUTTON WAS PRESSED WITH NULL VALUES
-                Toast.makeText(this, "Enter $ (USD) amount to convert", Toast.LENGTH_SHORT).show();
+            // TOAST TO USER IF USD CONVERT BUTTON WAS PRESSED WITH NULL VALUES
+            Toast.makeText(this, "Enter $ (USD) amount to convert", Toast.LENGTH_SHORT).show();
 
-            } else {
+        } else {
 
-                // CAST USD AMOUNT TO A DOUBLE FOR USABILITY
-                double amountInDollarsDouble = Double.parseDouble(amountInDollarsString);
+            // CAST USD AMOUNT TO A DOUBLE FOR USABILITY
+            double amountInDollarsDouble = Double.parseDouble(amountInDollarsString);
 
-                // FORMULA FOR USD AMOUNT INTO YEN AMOUNT DOUBLE
-                double amountInYenDouble = amountInDollarsDouble * jpyJSON;
+            // FORMULA FOR USD AMOUNT INTO YEN AMOUNT DOUBLE
+            double amountInYenDouble = amountInDollarsDouble * jpyJSON;
 
-                // CONVERT YEN AMOUNT INTO A STRING FOR USABILITY, ADD DECIMAL WITH LIMIT TO THE THOUSANDTHS PLACE
-                String amountInYenString = String.format("%.2f", amountInYenDouble);
+            // CONVERT YEN AMOUNT INTO A STRING FOR USABILITY, ADD DECIMAL WITH LIMIT TO THE THOUSANDTHS PLACE
+            String amountInYenString = String.format("%.2f", amountInYenDouble);
 
-                // TOAST USD TO JPY CONVERSION RESULT TO USER
-                Toast.makeText(this, "$" + amountInDollarsString + " (USD) equals to ¥" + amountInYenString + " (JPY)", Toast.LENGTH_LONG).show();
-            }
+            // TOAST USD TO JPY CONVERSION RESULT TO USER
+            Toast.makeText(this, "$" + amountInDollarsString + " (USD) equals to ¥" + amountInYenString + " (JPY)", Toast.LENGTH_LONG).show();
         }
-        // END OF (USD) CONVERSION
+    }
+    // END OF (USD) CONVERSION
 
-        //---------------------------------------------------------------------------------------//
+    //---------------------------------------------------------------------------------------//
 
-        // START OF (JPY) CONVERSION
-        public void convertYen(View view) {
+    // START OF (JPY) CONVERSION
+    public void convertYen(View view) {
 
-            // GETS INPUT VALUE OF YEN AMOUNT FROM USER
-            EditText editText = (EditText) findViewById(R.id.yenAmount);
+        // GETS INPUT VALUE OF YEN AMOUNT FROM USER
+        EditText editText = (EditText) findViewById(R.id.yenAmount);
 
-            // CONVERTS YEN AMOUNT INTO A STRING FOR USABILITY
-            String amountInYenString = editText.getText().toString();
+        // CONVERTS YEN AMOUNT INTO A STRING FOR USABILITY
+        String amountInYenString = editText.getText().toString();
 
-            // CHECK IF NULL VALUES WAS GIVEN
-            if (amountInYenString.matches("")) {
+        // CHECK IF NULL VALUES WAS GIVEN
+        if (amountInYenString.matches("")) {
 
-                // TOAST TO USER IF JPY CONVERT BUTTON WAS PRESSED WITH NULL VALUES
-                Toast.makeText(this, "Enter ¥ (JPY) amount to convert", Toast.LENGTH_SHORT).show();
+            // TOAST TO USER IF JPY CONVERT BUTTON WAS PRESSED WITH NULL VALUES
+            Toast.makeText(this, "Enter ¥ (JPY) amount to convert", Toast.LENGTH_SHORT).show();
 
-            } else {
+        } else {
 
-                // CAST YEN AMOUNT TO A DOUBLE FOR USABILITY
-                double amountInYenDouble = Double.parseDouble(amountInYenString);
+            // CAST YEN AMOUNT TO A DOUBLE FOR USABILITY
+            double amountInYenDouble = Double.parseDouble(amountInYenString);
 
-                // FORMULA FOR YEN AMOUNT INTO DOLLARS AMOUNT DOUBLE
-                double amountInDollarsDouble = amountInYenDouble * usdJSON;
+            // FORMULA FOR YEN AMOUNT INTO DOLLARS AMOUNT DOUBLE
+            double amountInDollarsDouble = amountInYenDouble * usdJSON;
 
-                // CONVERT DOLLARS AMOUNT INTO A STRING FOR USABILITY, ADD DECIMAL WITH LIMIT TO THE THOUSANDTHS PLACE
-                String amountInDollarsString = String.format("%.2f", amountInDollarsDouble);
+            // CONVERT DOLLARS AMOUNT INTO A STRING FOR USABILITY, ADD DECIMAL WITH LIMIT TO THE THOUSANDTHS PLACE
+            String amountInDollarsString = String.format("%.2f", amountInDollarsDouble);
 
-                // TOAST JPY TO USD CONVERSION RESULT TO USER
-                Toast.makeText(this, "¥" + amountInYenString + " (JPY) equals to $" + amountInDollarsString + " (USD)", Toast.LENGTH_SHORT).show();
-            }
+            // TOAST JPY TO USD CONVERSION RESULT TO USER
+            Toast.makeText(this, "¥" + amountInYenString + " (JPY) equals to $" + amountInDollarsString + " (USD)", Toast.LENGTH_SHORT).show();
         }
-        // END OF (JPY) CONVERSION
+    }
+    // END OF (JPY) CONVERSION
 
-        //---------------------------------------------------------------------------------------//
 
+
+
+    //---------------------------------------------------------------------------------------//
+
+    //ONCREATE
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -236,11 +241,27 @@ public class MainActivity extends AppCompatActivity {
             getJPYRate.execute("https://ratesapi.io/api/latest?base=JPY");
 
 
+            //TEXTVIEW INITIALIZERS
+
+                //DATE
+
+                //USD VALUE TEXTVIEW
+                final TextView liveUSDValue = (TextView) findViewById(R.id.liveUSDValue);
+                String liveUSDValueString = String.valueOf(usdJSON);
+                liveUSDValue.setText(liveUSDValueString);
+
+                //JPY VALUE TEXTVIEW
+                final TextView liveJPYValue = (TextView) findViewById(R.id.liveJPYValue);
+                String liveJPYValueString = String.valueOf(jpyJSON);
+                liveJPYValue.setText(liveJPYValueString);
+
             // ADBMOD INSTANTIATION
             MobileAds.initialize(this, "ca-app-pub-9665161606825012/3253543710");
             mAdView = findViewById(R.id.adView);
             AdRequest adRequest = new AdRequest.Builder().build();
             mAdView.loadAd(adRequest);
+
+
         }
     }
 
