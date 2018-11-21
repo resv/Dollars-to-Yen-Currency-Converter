@@ -51,7 +51,8 @@
     <ImageView
         android:id="@+id/image"
         android:layout_width="wrap_content"
-        android:layout_height="201dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="8dp"
         android:adjustViewBounds="false"
         android:scaleType="centerCrop"
         ads:layout_constraintBottom_toTopOf="@+id/guideline2"
@@ -138,36 +139,38 @@
     <TextView
         android:id="@+id/liveUSDValue"
         android:layout_width="wrap_content"
-        android:layout_height="28dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
         android:gravity="center_vertical|center_horizontal"
-        android:textColor="@color/USD"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="20sp"
         android:textStyle="bold"
-        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintEnd_toStartOf="@+id/liveJPYValue"
+        ads:layout_constraintHorizontal_bias="0.5"
         ads:layout_constraintStart_toStartOf="parent"
-        ads:layout_constraintTop_toTopOf="@+id/guideline4"/>
+        ads:layout_constraintTop_toBottomOf="@+id/yenAmount" />
 
     <TextView
         android:id="@+id/liveJPYValue"
         android:layout_width="wrap_content"
-        android:layout_height="28dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:gravity="center_vertical|center_horizontal"
-        android:textColor="@color/YEN"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="20sp"
         android:textStyle="bold"
-        ads:layout_constraintTop_toBottomOf="@+id/liveUSDValue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintHorizontal_bias="0.5"
+        ads:layout_constraintStart_toEndOf="@+id/liveUSDValue"
+        ads:layout_constraintTop_toBottomOf="@+id/yenAmount" />
 
     <TextView
         android:id="@+id/liveDateValue"
@@ -180,11 +183,11 @@
         android:layout_marginRight="8dp"
         android:textColor="@color/common_google_signin_btn_text_light_default"
         ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintHorizontal_bias="0.498"
         ads:layout_constraintStart_toStartOf="parent"
-        ads:layout_constraintTop_toBottomOf="@+id/liveJPYValue" />
+        ads:layout_constraintTop_toBottomOf="@+id/liveUSDValue" />
 
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
         android:layout_width="320dp"
         android:layout_height="50dp"
@@ -199,8 +202,7 @@
         ads:layout_constraintBottom_toBottomOf="parent"
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintHorizontal_bias="0.493"
-        ads:layout_constraintStart_toStartOf="parent">
-    </com.google.android.gms.ads.AdView>
+        ads:layout_constraintStart_toStartOf="parent"></com.google.android.gms.ads.AdView>
 
 </android.support.constraint.ConstraintLayout>
 
