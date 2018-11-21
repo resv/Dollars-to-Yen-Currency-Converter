@@ -1,10 +1,13 @@
 package com.myapp.akim4.usdtoyen;
 
+import android.database.DataSetObserver;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,19 +27,17 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
     //START OF INITIALIZING GLOBAL VARIABLES
-
-    //ADMOB VARIABLE
-    private AdView mAdView;
-    private String date;
-    static private Double usdJSON;
-    static private Double jpyJSON;
-
+        //ADMOB VARIABLE
+        private AdView mAdView;
+        private String date;
+        static private Double usdJSON;
+        static private Double jpyJSON;
     //END OF INITIALIZATION OF GLOBAL VARIABLES
 
     //---------------------------------------------------------------------------------------//
 
-    // START OF USD JSON API CODE
-    static class downloadUSDJsonData extends AsyncTask<String, Void, String> {
+    // START OF USD BASE, LOOKS FOR JPY JSON API CODE
+    public class downloadUSDJsonData extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
@@ -79,7 +80,9 @@ public class MainActivity extends AppCompatActivity {
 
                 jpyJSON = rateArr.getDouble(17);
 
-
+                TextView liveJPYValue = (TextView) findViewById(R.id.liveJPYValue);
+                String liveJPYValueString = String.valueOf(jpyJSON);
+                liveJPYValue.setText(liveJPYValueString);
 
                 //FOR LOG TESTING PURPOSES
                     //Double jpyObj = rateArr.getDouble(17);
@@ -93,12 +96,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    // END OF USD JSON API CODE
+    // END OF USD BASE, LOOKS FOR JPY JSON API CODE
 
     //---------------------------------------------------------------------------------------//
 
-    // START OF JPY JSON API CODE
-    static class downloadJPYJsonData extends AsyncTask<String, Void, String> {
+    // START OF JPY BASE, LOOKS FOR USD JSON API CODE
+    public class downloadJPYJsonData extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
@@ -140,6 +143,10 @@ public class MainActivity extends AppCompatActivity {
                 JSONArray rateArr = rateInfo.toJSONArray(rateInfo.names());
 
                 usdJSON = rateArr.getDouble(30);
+                
+                TextView liveUSDValue = (TextView) findViewById(R.id.liveUSDValue);
+                String liveUSDValueString = String.valueOf(usdJSON);
+                liveUSDValue.setText(liveUSDValueString);
 
                 //FOR LOG TESTING PURPOSES
                     //Double usdObj = rateArr.getDouble(30);
@@ -152,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-        // END OF JPY JSON API CODE
+        // END OF JPY BASE, LOOKS FOR USD JSON API CODE
 
      //---------------------------------------------------------------------------------------//
 
@@ -233,27 +240,30 @@ public class MainActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
 
-            // JSON INSTANTIATION, ENTER API URLS
-            downloadUSDJsonData getUSDRate = new downloadUSDJsonData();
-            getUSDRate.execute("https://ratesapi.io/api/latest?base=USD");
+            //START OF JSON INSTANTIATION, ENTER API URLS
+                //USD BASE JSON
+                downloadUSDJsonData getUSDRate = new downloadUSDJsonData();
+                getUSDRate.execute("https://ratesapi.io/api/latest?base=USD");
 
-            downloadJPYJsonData getJPYRate = new downloadJPYJsonData();
-            getJPYRate.execute("https://ratesapi.io/api/latest?base=JPY");
+                //JPY BASE JSON
+                downloadJPYJsonData getJPYRate = new downloadJPYJsonData();
+                getJPYRate.execute("https://ratesapi.io/api/latest?base=JPY");
+            //END OF JSON INSTANTIATION, ENTER API URLS
 
-
-            //TEXTVIEW INITIALIZERS
+            //START OF TEXTVIEW INITIALIZERS
 
                 //DATE
 
-                //USD VALUE TEXTVIEW
-                TextView liveUSDValue = (TextView) findViewById(R.id.liveUSDValue);
-                String liveUSDValueString = String.valueOf(usdJSON);
-                liveUSDValue.setText(liveUSDValueString);
-
                 //JPY VALUE TEXTVIEW
-                TextView liveJPYValue = (TextView) findViewById(R.id.liveJPYValue);
-                String liveJPYValueString = String.valueOf(jpyJSON);
-                liveJPYValue.setText(liveJPYValueString);
+//                TextView liveJPYValue = (TextView) findViewById(R.id.liveJPYValue);
+//                String liveJPYValueString = String.valueOf(jpyJSON);
+//                liveJPYValue.setText(liveJPYValueString);
+
+                //USD VALUE TEXTVIEW
+//                TextView liveUSDValue = (TextView) findViewById(R.id.liveUSDValue);
+//                String liveUSDValueString = String.valueOf(usdJSON);
+//                liveUSDValue.setText(liveUSDValueString);
+            //END OF TEXTVIEW INITIALIZERS
 
             // ADBMOD INSTANTIATION
             MobileAds.initialize(this, "ca-app-pub-9665161606825012/3253543710");
