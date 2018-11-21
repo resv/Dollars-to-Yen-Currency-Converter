@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(s);
 
             //TEST TO CHECK IF JSON DATA HAS BEEN FETCHED, COMMENT OR DELETE OUT FOR RELEASE
-            Log.i("JSON", s);
+            //Log.i("JSON", s);
 
             try {
                 JSONObject jsonObject = new JSONObject(s);
@@ -77,16 +77,17 @@ public class MainActivity extends AppCompatActivity {
 
                 JSONArray rateArr = rateInfo.toJSONArray(rateInfo.names());
 
+                jpyJSON = rateArr.getDouble(17);
 
-                for (int i = 0; i < rateArr.length(); i++) {
+
 
                 //FOR LOG TESTING PURPOSES
                     //Double jpyObj = rateArr.getDouble(17);
                     //String jpyRate = String.valueOf(jpyObj);
                     //Log.i("JSON", jpyRate);
                 //Actual JSON data fetching
-                    jpyJSON = rateArr.getDouble(17);
-                }
+                    //jpyJSON = rateArr.getDouble(17);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(s);
 
             //TEST TO CHECK IF JSON DATA HAS BEEN FETCHED, COMMENT OR DELETE OUT FOR RELEASE
-            Log.i("JSON", s);
+            //Log.i("JSON", s);
 //
             try {
                 JSONObject jsonObject = new JSONObject(s);
@@ -138,15 +139,14 @@ public class MainActivity extends AppCompatActivity {
 
                 JSONArray rateArr = rateInfo.toJSONArray(rateInfo.names());
 
-                for (int i = 0; i < rateArr.length(); i++) {
+                usdJSON = rateArr.getDouble(30);
 
                 //FOR LOG TESTING PURPOSES
                     //Double usdObj = rateArr.getDouble(30);
                     //String usdRate = String.valueOf(usdObj);
                     //Log.i("JSON", usdRate);
                 // Actual JSON data fetching
-                    usdJSON = rateArr.getDouble(30);
-                }
+                    //usdJSON = rateArr.getDouble(30);
             } catch (Exception e) {
                 e.printStackTrace();
             }
