@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         ads:layout_constraintGuide_begin="20dp"
-        ads:layout_constraintGuide_percent=".45" />
+        ads:layout_constraintGuide_percent=".40" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline3"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         ads:layout_constraintGuide_begin="20dp"
-        ads:layout_constraintGuide_percent=".55" />
+        ads:layout_constraintGuide_percent=".50" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline4"
@@ -66,6 +66,7 @@
         android:ems="10"
         android:hint="Enter $ (USD)"
         android:inputType="numberDecimal"
+        android:imeOptions="actionSend"
         ads:layout_constraintEnd_toStartOf="@+id/convertUsdButton"
         ads:layout_constraintStart_toStartOf="parent"
         ads:layout_constraintTop_toTopOf="@+id/guideline2" />
@@ -81,6 +82,7 @@
         android:ems="10"
         android:hint="Enter ¥ (JPY)"
         android:inputType="numberDecimal"
+        android:imeOptions="actionSend"
         ads:layout_constraintEnd_toStartOf="@+id/convertYenButton"
         ads:layout_constraintHorizontal_bias="0.5"
         ads:layout_constraintTop_toTopOf="@+id/guideline3"
@@ -91,7 +93,7 @@
     <Button
         android:id="@+id/convertUsdButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
         android:layout_marginEnd="8dp"
@@ -100,6 +102,7 @@
         android:onClick="convertUsd"
         android:text="Convert $"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="12sp"
         ads:layout_constraintHorizontal_bias="0.5"
         ads:layout_constraintTop_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -109,7 +112,7 @@
     <Button
         android:id="@+id/convertYenButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
         android:layout_marginEnd="8dp"
@@ -118,6 +121,7 @@
         android:onClick="convertYen"
         android:text="Convert ¥"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="12sp"
         ads:layout_constraintHorizontal_bias="0.5"
         ads:layout_constraintTop_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -218,7 +222,8 @@
         ads:layout_constraintBottom_toBottomOf="parent"
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintHorizontal_bias="0.493"
-        ads:layout_constraintStart_toStartOf="parent"></com.google.android.gms.ads.AdView>
+        ads:layout_constraintStart_toStartOf="parent">
+    </com.google.android.gms.ads.AdView>
 
 </android.support.constraint.ConstraintLayout>
 

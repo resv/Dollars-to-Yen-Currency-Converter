@@ -1,12 +1,15 @@
 package com.myapp.akim4.usdtoyen;
 
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Adapter;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -89,6 +92,22 @@ public class MainActivity extends AppCompatActivity {
                     //SET VALUE USING THE CONCAT STRINGS
                     liveJPYValue.setText(jpyValuePrefix);
 
+                        //---------------------------------------------------------------//
+                        //DATE JSON API
+                        //CREATE STRING VARIABLE FROM THE JSON DATA, (CAST TO STRING)
+                        String dateJSON = jsonObject.getString("date");
+
+                        //INITIALIZES liveDateValue TEXTVIEW AND CREATE DATE STRING VALUE
+                        TextView liveDateValue = (TextView) findViewById(R.id.liveDateValue);
+
+                        //CREATING STRING WITH JSON VALUE, THEN CONCAT INTO ONE STRING
+                        String liveDateValueString = String.valueOf(dateJSON);
+                        String dateValuePrefix = ("Last updated on: " + liveDateValueString);
+
+                        //SET VALUE USING THE CONCAT STRINGS
+                        liveDateValue.setText(dateValuePrefix);
+                        //---------------------------------------------------------------//
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -152,22 +171,6 @@ public class MainActivity extends AppCompatActivity {
 
                     //SET VALUE USING THE CONCAT STRINGS
                     liveUSDValue.setText(usdValuePrefix);
-
-                //---------------------------------------------------------------//
-                    //DATE JSON API
-                        //CREATE STRING VARIABLE FROM THE JSON DATA, (CAST TO STRING)
-                        String dateJSON = jsonObject.getString("date");
-
-                        //INITIALIZES liveDateValue TEXTVIEW AND CREATE DATE STRING VALUE
-                        TextView liveDateValue = (TextView) findViewById(R.id.liveDateValue);
-
-                        //CREATING STRING WITH JSON VALUE, THEN CONCAT INTO ONE STRING
-                        String liveDateValueString = String.valueOf(dateJSON);
-                        String dateValuePrefix = ("Last updated on: " + liveDateValueString);
-
-                        //SET VALUE USING THE CONCAT STRINGS
-                        liveDateValue.setText(dateValuePrefix);
-                //---------------------------------------------------------------//
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -270,6 +273,34 @@ public class MainActivity extends AppCompatActivity {
                 //JPY BASE JSON (AND DATE)
                 downloadJPYJsonData getJPYRate = new downloadJPYJsonData();
                 getJPYRate.execute("https://ratesapi.io/api/latest?base=JPY");
+
+            //---------------------------------------------------------------//
+            //"Enter" KEY STARTS CONVERSION AND CLOSES KEYBOARD
+
+                //FOR USD CONVERSION
+                EditText usdKeyboard = (EditText) findViewById(R.id.usdAmount);
+                usdKeyboard.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                    @Override
+                    public boolean onEditorAction(TextView editText, int actionId, KeyEvent event) {
+                        if (actionId == EditorInfo.IME_ACTION_SEND) {
+                            convertUsd(null);
+                        }
+                        return true;
+                    }
+                });
+
+                //FOR JPY CONVERSION
+                EditText jpyKeyboard = (EditText) findViewById(R.id.yenAmount);
+                jpyKeyboard.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                    @Override
+                    public boolean onEditorAction(TextView editText, int actionId, KeyEvent event) {
+                        if (actionId == EditorInfo.IME_ACTION_SEND) {
+                            convertYen(null);
+                        }
+                        return true;
+                    }
+                });
+            //---------------------------------------------------------------//
 
             // ADBMOD INSTANTIATION
             MobileAds.initialize(this, "ca-app-pub-9665161606825012/3253543710");
