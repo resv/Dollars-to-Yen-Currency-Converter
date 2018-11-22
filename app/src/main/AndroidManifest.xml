@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.myapp.akim4.usdtoyen.MainActivity"
             android:configChanges="orientation"
+            android:windowSoftInputMode="adjustNothing"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

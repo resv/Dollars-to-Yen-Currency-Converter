@@ -17,6 +17,7 @@ import com.google.android.gms.ads.MobileAds;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -205,6 +206,11 @@ public class MainActivity extends AppCompatActivity {
 
             // TOAST USD TO JPY CONVERSION RESULT TO USER
             Toast.makeText(this, "$" + amountInDollarsString + " (USD) equals to ¥" + amountInYenString + " (JPY)", Toast.LENGTH_LONG).show();
+
+            //RECENT (USD) CONVERSION TEXTVIEW
+            TextView recentConversionValue = (TextView) findViewById(R.id.recentConversionValue);
+            String recentConversionValueString = ("$" + amountInDollarsString +  " = ¥" + amountInYenString);
+            recentConversionValue.setText(recentConversionValueString);
         }
     }
     // END OF (USD) CONVERSION
@@ -239,6 +245,11 @@ public class MainActivity extends AppCompatActivity {
 
             // TOAST JPY TO USD CONVERSION RESULT TO USER
             Toast.makeText(this, "¥" + amountInYenString + " (JPY) equals to $" + amountInDollarsString + " (USD)", Toast.LENGTH_SHORT).show();
+
+                //RECENT (JPY) CONVERSION TEXTVIEW
+                TextView recentConversionValue = (TextView) findViewById(R.id.recentConversionValue);
+                String recentConversionValueString = ("¥" + amountInYenString +  " = $" + amountInDollarsString);
+                recentConversionValue.setText(recentConversionValueString);
         }
     }
     // END OF (JPY) CONVERSION
