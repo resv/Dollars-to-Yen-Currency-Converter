@@ -214,6 +214,9 @@ public class MainActivity extends AppCompatActivity {
             TextView recentConversionValue = (TextView) findViewById(R.id.recentConversionValue);
             String recentConversionValueString = ("$" + amountInDollarsString +  " = ¥" + amountInYenString);
             recentConversionValue.setText(recentConversionValueString);
+
+            //CLEAR INPUT VALUE
+            editText.setText("");
         }
     }
     // END OF (USD) CONVERSION
@@ -253,6 +256,10 @@ public class MainActivity extends AppCompatActivity {
                 TextView recentConversionValue = (TextView) findViewById(R.id.recentConversionValue);
                 String recentConversionValueString = ("¥" + amountInYenString +  " = $" + amountInDollarsString);
                 recentConversionValue.setText(recentConversionValueString);
+
+                //CLEAR INPUT VALUE
+                editText.setText("");
+
         }
     }
     // END OF (JPY) CONVERSION
