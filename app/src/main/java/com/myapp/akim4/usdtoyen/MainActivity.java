@@ -278,24 +278,26 @@ public class MainActivity extends AppCompatActivity {
             //"Enter" KEY STARTS CONVERSION AND CLOSES KEYBOARD
 
                 //FOR USD CONVERSION
-                EditText usdKeyboard = (EditText) findViewById(R.id.usdAmount);
+                final EditText usdKeyboard = (EditText) findViewById(R.id.usdAmount);
                 usdKeyboard.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                     @Override
                     public boolean onEditorAction(TextView editText, int actionId, KeyEvent event) {
                         if (actionId == EditorInfo.IME_ACTION_SEND) {
                             convertUsd(null);
+                            usdKeyboard.setText("");
                         }
                         return true;
                     }
                 });
 
                 //FOR JPY CONVERSION
-                EditText jpyKeyboard = (EditText) findViewById(R.id.yenAmount);
+                final EditText jpyKeyboard = (EditText) findViewById(R.id.yenAmount);
                 jpyKeyboard.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                     @Override
                     public boolean onEditorAction(TextView editText, int actionId, KeyEvent event) {
                         if (actionId == EditorInfo.IME_ACTION_SEND) {
                             convertYen(null);
+                            jpyKeyboard.setText("");
                         }
                         return true;
                     }
