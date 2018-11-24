@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Dollars To Yen</string>
     <string name="banner_ad_unit_id">ca-app-pub-9665161606825012/3253543710</string>
-    <string name="usdJSON" />
+    <string name="usdJSON"></string>
 </resources>

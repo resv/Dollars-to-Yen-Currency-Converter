@@ -64,6 +64,35 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/usdtoyen" />
 
+    <TextView
+        android:id="@+id/recentConversionStatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Recent Conversion:"
+        android:textSize="14sp"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toBottomOf="@+id/guideline" />
+
+    <TextView
+        android:id="@+id/recentConversionValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="25sp"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toBottomOf="@+id/recentConversionStatic" />
+
     <EditText
         android:id="@+id/usdAmount"
         android:layout_width="wrap_content"
@@ -174,12 +203,12 @@
         ads:layout_constraintTop_toBottomOf="@+id/yenAmount" />
 
     <Button
-        android:id="@+id/valueInfo"
+        android:id="@+id/liveDateValueButton"
         android:layout_width="14dp"
         android:layout_height="14dp"
         android:layout_marginTop="3dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
         android:background="@drawable/question"
         ads:layout_constraintEnd_toStartOf="@+id/liveDateValue"
         ads:layout_constraintTop_toBottomOf="@id/guideline4" />
@@ -196,35 +225,6 @@
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintStart_toStartOf="parent"
         ads:layout_constraintTop_toBottomOf="@+id/guideline4" />
-
-    <TextView
-        android:id="@+id/recentConversionStatic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Recent Conversion:"
-        android:textSize="14sp"
-        ads:layout_constraintEnd_toEndOf="parent"
-        ads:layout_constraintStart_toStartOf="parent"
-        ads:layout_constraintTop_toBottomOf="@+id/guideline" />
-
-    <TextView
-        android:id="@+id/recentConversionValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="25sp"
-        ads:layout_constraintEnd_toEndOf="parent"
-        ads:layout_constraintStart_toStartOf="parent"
-        ads:layout_constraintTop_toBottomOf="@+id/recentConversionStatic" />
 
     <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"

@@ -2,9 +2,14 @@ package com.myapp.akim4.usdtoyen;
 
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -82,18 +87,45 @@ public class MainActivity extends AppCompatActivity {
                 //EXTRACT ELEMENT FROM JSON ARRAY
                 jpyJSON = rateArr.getDouble(17);
 
+                //---------------------------------------------------------------//
+                    //liveJPYValue TEXTVIEW (OLD METHOD FOR COLORATION, COMMENTED OUT)
                     //INITIALIZING liveJPYValue TEXTVIEW
+    //                    TextView liveJPYValue = (TextView) findViewById(R.id.liveJPYValue);
+                    //BREAKING UP STRINGS FOR COLORATION IN STRINGS.XML, CREATING STRING WITH JSON VALUE, THEN CONCAT INTO ONE STRING
+    //                    String liveJPYValuePrefix = ("$1");
+    //                    String equals = " = ";
+    //                    String liveJPYValueString = ("¥" + String.valueOf(jpyJSON));
+    //                    String liveJPYValueStringFinal = liveJPYValuePrefix + equals + liveJPYValueString;
+                    //SET VALUE USING THE CONCAT STRINGS
+    //                    liveJPYValue.setText(liveJPYValueStringFinal);
+
+                    //liveJPYValue TEXTVIEW (NEW METHOD FOR COLORATION)
                     TextView liveJPYValue = (TextView) findViewById(R.id.liveJPYValue);
 
-                    //CREATING STRING WITH JSON VALUE, THEN CONCAT INTO ONE STRING
-                    String liveJPYValueString = String.valueOf(jpyJSON);
-                    String jpyValuePrefix = ("$1 = ¥" + liveJPYValueString);
+                    //INITIALIZING BUILDER THAT WILL ACCEPT APPENDS
+                    SpannableStringBuilder builder = new SpannableStringBuilder();
 
-                    //SET VALUE USING THE CONCAT STRINGS
-                    liveJPYValue.setText(jpyValuePrefix);
+                    //SETTING COLOR FOR JPY PREFIX THEN APPENDS
+                    String liveJPYValuePrefix = ("$1");
+                    SpannableString USDSpannable = new SpannableString(liveJPYValuePrefix);
+                    USDSpannable.setSpan(new ForegroundColorSpan(Color.BLUE), 0, liveJPYValuePrefix.length(), 0);
+                    builder.append(USDSpannable);
+
+                    //APPENDING "=" (NO COLOR)
+                    String equals = " = ";
+                    builder.append(equals);
+
+                    //SETTING COLOR FOR JPY STRINGS THEN APPENDS
+                    String liveJPYValueString = ("¥" + String.valueOf(jpyJSON));
+                    SpannableString JPYSpannable= new SpannableString(liveJPYValueString);
+                    JPYSpannable.setSpan(new ForegroundColorSpan(Color.RED), 0, JPYSpannable.length(), 0);
+                    builder.append(JPYSpannable);
+
+                    //SET VALUE FOR APPENDED STRINGS (APPENDER OBJECT NAME IS BUILDER)
+                    liveJPYValue.setText(builder, TextView.BufferType.SPANNABLE);
 
                         //---------------------------------------------------------------//
-                        //DATE JSON API
+                        //DATE JSON API (ONLY NEEDED ONCE)
                         //CREATE STRING VARIABLE FROM THE JSON DATA, (CAST TO STRING)
                         String dateJSON = jsonObject.getString("date");
 
@@ -162,15 +194,42 @@ public class MainActivity extends AppCompatActivity {
                 //EXTRACT ELEMENT FROM JSON ARRAY FOR CONVERSION FUNCTION
                 usdJSON = rateArr.getDouble(30);
 
-                    //INITIALIZING liveUSDValue TEXTVIEW
-                    TextView liveUSDValue = (TextView) findViewById(R.id.liveUSDValue);
+                //---------------------------------------------------------------//
+//                //liveUSDValue TEXTVIEW (OLD METHOD FOR COLORATION, COMMENTED OUT)
+//                    //INITIALIZING liveUSDValue TEXTVIEW
+//                        TextView liveUSDValue = (TextView) findViewById(R.id.liveUSDValue);
+//                    //BREAKING UP STRINGS FOR COLORATION IN STRINGS.XML, CREATING STRING WITH JSON VALUE, THEN CONCAT INTO ONE STRING
+//                        String liveUSDValuePrefix = ("¥1");
+//                        String equals = " = ";
+//                        String liveUSDValueString = ("$" + String.valueOf(usdJSON));
+//                        String liveUSDValueStringFinal = liveUSDValuePrefix + equals + liveUSDValueString;
+//                    //SET VALUE USING THE CONCAT STRINGS
+//                        liveUSDValue.setText(liveUSDValueStringFinal);
 
-                    //CREATING STRING WITH JSON VALUE, THEN CONCAT INTO ONE STRING
-                    String liveUSDValueString = String.valueOf(usdJSON);
-                    String usdValuePrefix = ("¥1 = $" + liveUSDValueString);
+                //liveUSDValue TEXTVIEW (NEW METHOD FOR COLORATION)
+                TextView liveUSDValue = (TextView) findViewById(R.id.liveUSDValue);
 
-                    //SET VALUE USING THE CONCAT STRINGS
-                    liveUSDValue.setText(usdValuePrefix);
+                //INITIALIZING BUILDER THAT WILL ACCEPT APPENDS
+                SpannableStringBuilder builder = new SpannableStringBuilder();
+
+                //SETTING COLOR FOR JPY PREFIX THEN APPENDS
+                String liveUSDValuePrefix = ("¥1");
+                SpannableString JPYSpannable = new SpannableString(liveUSDValuePrefix);
+                JPYSpannable.setSpan(new ForegroundColorSpan(Color.RED), 0, liveUSDValuePrefix.length(), 0);
+                builder.append(JPYSpannable);
+
+                //APPENDING "=" (NO COLOR)
+                String equals = " = ";
+                builder.append(equals);
+
+                //SETTING COLOR FOR JPY STRINGS THEN APPENDS
+                String liveUSDValueString = ("$" + String.valueOf(usdJSON));
+                SpannableString USDSpannable= new SpannableString(liveUSDValueString);
+                USDSpannable.setSpan(new ForegroundColorSpan(Color.BLUE), 0, USDSpannable.length(), 0);
+                builder.append(USDSpannable);
+
+                //SET VALUE FOR APPENDED STRINGS (APPENDER OBJECT NAME IS BUILDER)
+                liveUSDValue.setText(builder, TextView.BufferType.SPANNABLE);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -254,12 +313,16 @@ public class MainActivity extends AppCompatActivity {
 
                 //RECENT (JPY) CONVERSION TEXTVIEW
                 TextView recentConversionValue = (TextView) findViewById(R.id.recentConversionValue);
-                String recentConversionValueString = ("¥" + amountInYenString +  " = $" + amountInDollarsString);
+
+                String amountInYenStringWithSymbol = ("¥" + amountInYenString);
+                String amountInDollarStringsWithSymbol = ("$" + amountInDollarsString);
+
+                String recentConversionValueString = (amountInYenStringWithSymbol + " = " + amountInDollarStringsWithSymbol);
+
                 recentConversionValue.setText(recentConversionValueString);
 
                 //CLEAR INPUT VALUE
                 editText.setText("");
-
         }
     }
     // END OF (JPY) CONVERSION
