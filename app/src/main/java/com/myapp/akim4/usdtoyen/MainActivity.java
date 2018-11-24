@@ -1,21 +1,17 @@
 package com.myapp.akim4.usdtoyen;
 
 import android.content.Intent;
-import android.database.DataSetObserver;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Adapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,24 +21,22 @@ import com.google.android.gms.ads.MobileAds;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
-    //START OF INITIALIZING GLOBAL VARIABLES
+//START OF INITIALIZING GLOBAL VARIABLES
     private AdView mAdView;
     public Double usdJSON;
     public Double jpyJSON;
 
 //---------------------------------------------------------------------------------------//
+// START OF USD BASE, LOOKS FOR JPY JSON API CODE
 
-    // START OF USD BASE, LOOKS FOR JPY JSON API CODE
     public class downloadUSDJsonData extends AsyncTask<String, Void, String> {
 
         @Override
@@ -148,8 +142,8 @@ public class MainActivity extends AppCompatActivity {
     // END OF USD BASE, LOOKS FOR JPY JSON API CODE
 
 //---------------------------------------------------------------------------------------//
+// START OF JPY BASE, LOOKS FOR USD JSON API CODE
 
-    // START OF JPY BASE, LOOKS FOR USD JSON API CODE
     public class downloadJPYJsonData extends AsyncTask<String, Void, String> {
 
         @Override
@@ -239,8 +233,8 @@ public class MainActivity extends AppCompatActivity {
     // END OF JPY BASE, LOOKS FOR USD JSON API CODE
 
 //---------------------------------------------------------------------------------------//
+// START OF (USD) CONVERSION
 
-    // START OF (USD) CONVERSION
     public void convertUsd(View view) {
 
         // GETS INPUT VALUE OF DOLLARS AMOUNT FROM USER
@@ -281,8 +275,8 @@ public class MainActivity extends AppCompatActivity {
     // END OF (USD) CONVERSION
 
 //---------------------------------------------------------------------------------------//
+// START OF (JPY) CONVERSION
 
-    // START OF (JPY) CONVERSION
     public void convertYen(View view) {
 
         // GETS INPUT VALUE OF YEN AMOUNT FROM USER
@@ -328,14 +322,31 @@ public class MainActivity extends AppCompatActivity {
     // END OF (JPY) CONVERSION
 
 //---------------------------------------------------------------------------------------//
+//NAVIGATION FOR NEW ACTIVITIES
 
-    //ONCREATE
+        //DATE INFO ACTIVITY METHOD TO OPEN
+            public void openDateInfoActivity(){
+                Intent intent = new Intent(this, DateInfoActivity.class);
+                startActivity(intent);
+            }
+
+        //APP INFO ACTIVITY METHOD TO OPEN
+        public void openAppInfoActivity(){
+            Intent intent = new Intent(this, AppInfoActivity.class);
+            startActivity(intent);
+        }
+
+//---------------------------------------------------------------------------------------//
+//ONCREATE
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
 
+            //---------------------------------------------------------------//
             //START OF JSON INSTANTIATION, ENTER API URLS
+
                 //USD BASE JSON
                 downloadUSDJsonData getUSDRate = new downloadUSDJsonData();
                 getUSDRate.execute("https://ratesapi.io/api/latest?base=USD");
@@ -372,13 +383,36 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
-            //---------------------------------------------------------------//
 
-            // ADBMOD INSTANTIATION
-            MobileAds.initialize(this, "ca-app-pub-9665161606825012/3253543710");
-            mAdView = findViewById(R.id.adView);
-            AdRequest adRequest = new AdRequest.Builder().build();
-            mAdView.loadAd(adRequest);
+            //---------------------------------------------------------------//
+            //MORE INFO BUTTONS
+
+                //DATE INFO BUTTON
+                Button dateInfoButton = findViewById(R.id.dateInfoButton);
+                dateInfoButton.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        openDateInfoActivity();
+                    }
+                });
+
+                //APP INFO BUTTON
+                Button appInfoButton = findViewById(R.id.appInfoButton);
+                appInfoButton.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        openAppInfoActivity();
+                    }
+                });
+
+            //---------------------------------------------------------------//
+            //AD INFO
+
+                // ADBMOD INSTANTIATION
+                MobileAds.initialize(this, "ca-app-pub-9665161606825012/3253543710");
+                mAdView = findViewById(R.id.adView);
+                AdRequest adRequest = new AdRequest.Builder().build();
+                mAdView.loadAd(adRequest);
         }
     }
 

@@ -26,7 +26,9 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9665161606825012~7384360412" />
-            android:name="com.google.android.actions">
+        android:name="com.google.android.actions">
+        <activity android:name=".DateInfoActivity" />
+        <activity android:name=".AppInfoActivity"></activity>
     </application>
 
 </manifest>
