@@ -8,15 +8,15 @@
     tools:context=".DateInfoActivity">
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline6"
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0" />
+        app:layout_constraintGuide_percent=".05" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline10"
+        android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -24,7 +24,7 @@
         app:layout_constraintGuide_percent="1" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline8"
+        android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -32,7 +32,7 @@
         app:layout_constraintGuide_percent=".05" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline9"
+        android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -43,15 +43,14 @@
         android:id="@+id/InfoTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="How rates are updated..."
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView
         android:id="@+id/infoTextView2"
@@ -61,8 +60,8 @@
         android:text='Currency rates are checked for updates when you open the "Dollars to Yen" application.'
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/InfoTextView" />
 
     <TextView
@@ -73,20 +72,20 @@
         android:text="The reference rates are usually updated around 10:00 EST / 12:00 GMT+9 on every working day, except on TARGET closing days."
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/infoTextView2" />
 
     <TextView
-        android:id="@+id/infoTextView4"
+        android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="If data connection is lost, the last updated rates will be used."
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/infoTextView3" />
 
     <TextView
@@ -97,9 +96,9 @@
         android:text="Live currency rates are published by the European Central Bank."
         android:textColor="@color/common_google_signin_btn_text_light_default"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/infoTextView4" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
@@ -108,9 +107,9 @@
         android:visibility="visible"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-9665161606825012/3253543710"
-        ads:layout_constraintBottom_toTopOf="@+id/guideline10"
-        ads:layout_constraintEnd_toStartOf="@+id/guideline9"
-        ads:layout_constraintStart_toStartOf="@+id/guideline8">
+        ads:layout_constraintBottom_toTopOf="@+id/guideline2"
+        ads:layout_constraintEnd_toStartOf="@+id/guideline4"
+        ads:layout_constraintStart_toStartOf="@+id/guideline3">
     </com.google.android.gms.ads.AdView>
 
 </android.support.constraint.ConstraintLayout>
