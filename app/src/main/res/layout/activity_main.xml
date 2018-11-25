@@ -245,16 +245,11 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:visibility="visible"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-9665161606825012/3253543710"
         ads:layout_constraintBottom_toBottomOf="parent"
         ads:layout_constraintEnd_toEndOf="parent"
-        ads:layout_constraintHorizontal_bias="0.493"
         ads:layout_constraintStart_toStartOf="parent">
     </com.google.android.gms.ads.AdView>
 
