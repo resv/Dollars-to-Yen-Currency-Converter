@@ -8,12 +8,12 @@
 
 
     <TextView
-        android:id="@+id/infoFIllerCanDeleteLater"
+        android:id="@+id/infoTextView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="APP INFO PAGE"
-        tools:layout_editor_absoluteX="125dp"
-        tools:layout_editor_absoluteY="245dp" />
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="86dp" />
 
 
     <android.support.constraint.Guideline
