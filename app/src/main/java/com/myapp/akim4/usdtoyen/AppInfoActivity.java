@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
@@ -31,6 +32,7 @@ public class AppInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_info);
 
+        //---------------------------------------------------------------//
         //RATE APP BUTTON
             Button rateAppButton = (Button) findViewById(R.id.rateAppButton);
             rateAppButton.setOnClickListener(new View.OnClickListener(){
@@ -81,6 +83,15 @@ public class AppInfoActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //---------------------------------------------------------------//
+        //INFO VERSION TEXTFIELD
+
+        TextView  appVersion = (TextView) findViewById(R.id.appVersion);
+        String versionConcat = ("Version " + versionCode + " / " + versionName);
+
+        appVersion.setText(versionConcat);
+
 
         //---------------------------------------------------------------//
         //AD INFO
