@@ -48,18 +48,18 @@ public class AppInfoActivity extends AppCompatActivity {
             });
 
         //SHARE APP BUTTON
-            Button shareAppButton = (Button) findViewById(R.id.shareAppButton);
-            shareAppButton.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v){
-                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                    sharingIntent.setType("text/plain");
-                    String shareBody = "Here is the share content body";
-                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
-                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                    startActivity(Intent.createChooser(sharingIntent, "Share via"));
-                }
-            });
+        Button shareAppButton = (Button) findViewById(R.id.shareAppButton);
+        shareAppButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBody = "Dollars to Yen Currency Converter, Google Play Link: http://play.google.com/store/apps/details?id=" + getPackageName();
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this app that converts Dollars and Yen!");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(sharingIntent, "Share via"));
+            }
+        });
 
         //---------------------------------------------------------------//
         //AD INFO

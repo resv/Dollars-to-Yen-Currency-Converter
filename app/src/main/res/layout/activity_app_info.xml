@@ -68,7 +68,7 @@
         android:id="@+id/textView3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="72dp"
         android:text="I'd appreciate it if you could share or rate my app, it really helps!"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
