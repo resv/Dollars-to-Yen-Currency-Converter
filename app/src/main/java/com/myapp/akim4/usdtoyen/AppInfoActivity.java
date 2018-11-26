@@ -84,6 +84,19 @@ public class AppInfoActivity extends AppCompatActivity {
             }
         });
 
+        //ABOUT DEV BUTTON
+        Button aboutDevButton = (Button) findViewById(R.id.aboutDevButton);
+
+        aboutDevButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("http://www.atomkim.com"));
+                startActivity(intent);
+            }
+        });
+
         //---------------------------------------------------------------//
         //INFO VERSION TEXTFIELD
 
