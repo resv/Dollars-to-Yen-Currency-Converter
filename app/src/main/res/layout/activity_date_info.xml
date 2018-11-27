@@ -81,7 +81,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="If data connection is lost, the last updated rates will be used."
+        android:text="No Data Connection"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -111,5 +111,13 @@
         ads:layout_constraintEnd_toStartOf="@+id/guideline4"
         ads:layout_constraintStart_toStartOf="@+id/guideline3">
     </com.google.android.gms.ads.AdView>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Data Connection"
+        tools:layout_editor_absoluteX="190dp"
+        tools:layout_editor_absoluteY="427dp" />
 
 </android.support.constraint.ConstraintLayout>

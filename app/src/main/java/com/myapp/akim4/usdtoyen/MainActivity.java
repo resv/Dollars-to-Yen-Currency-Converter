@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private AdView mAdView;
     public Double usdJSON;
     public Double jpyJSON;
+    public String dateJSON;
 
 //---------------------------------------------------------------------------------------//
 // START OF USD BASE, LOOKS FOR JPY JSON API CODE
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                         //---------------------------------------------------------------//
                         //DATE JSON API (ONLY NEEDED ONCE)
                         //CREATE STRING VARIABLE FROM THE JSON DATA, (CAST TO STRING)
-                        String dateJSON = jsonObject.getString("date");
+                        dateJSON = jsonObject.getString("date");
 
                         //INITIALIZES liveDateValue TEXTVIEW AND CREATE DATE STRING VALUE
                         TextView liveDateValue = (TextView) findViewById(R.id.liveDateValue);
@@ -137,7 +138,38 @@ public class MainActivity extends AppCompatActivity {
                         //---------------------------------------------------------------//
 
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
+            //DEFAULT JPY VALUE IF FOR NO DATA CONNECTION
+                jpyJSON = 113.2623;
+                //liveJPYValue TEXTVIEW (NEW METHOD FOR COLORATION)
+                TextView liveJPYValue = (TextView) findViewById(R.id.liveJPYValue);
+
+                //INITIALIZING BUILDER THAT WILL ACCEPT APPENDS
+                SpannableStringBuilder builder = new SpannableStringBuilder();
+
+                //SETTING COLOR FOR JPY PREFIX THEN APPENDS
+                String liveJPYValuePrefix = ("$1");
+                SpannableString USDSpannable = new SpannableString(liveJPYValuePrefix);
+                USDSpannable.setSpan(new ForegroundColorSpan(Color.BLUE), 0, liveJPYValuePrefix.length(), 0);
+                builder.append(USDSpannable);
+
+                //APPENDING "=" (NO COLOR)
+                String equals = " = ";
+                builder.append(equals);
+
+                //SETTING COLOR FOR JPY STRINGS THEN APPENDS
+                String liveJPYValueString = ("¥" + String.valueOf(jpyJSON));
+                SpannableString JPYSpannable= new SpannableString(liveJPYValueString);
+                JPYSpannable.setSpan(new ForegroundColorSpan(Color.RED), 0, JPYSpannable.length(), 0);
+                builder.append(JPYSpannable);
+
+                //SET VALUE FOR APPENDED STRINGS (APPENDER OBJECT NAME IS BUILDER)
+                liveJPYValue.setText(builder, TextView.BufferType.SPANNABLE);
+
+            //DEFAULT DATE VALUE IF FOR NO DATA CONNECTION
+                dateJSON = "No Data Connection";
+                TextView liveDateValue = (TextView) findViewById(R.id.liveDateValue);
+                liveDateValue.setText(dateJSON);
             }
         }
     }
@@ -228,7 +260,32 @@ public class MainActivity extends AppCompatActivity {
                 liveUSDValue.setText(builder, TextView.BufferType.SPANNABLE);
 
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
+                usdJSON = 0.0088;
+            //DEFAULT JPY VALUE IF FOR NO DATA CONNECTION
+                TextView liveUSDValue = (TextView) findViewById(R.id.liveUSDValue);
+
+                //INITIALIZING BUILDER THAT WILL ACCEPT APPENDS
+                SpannableStringBuilder builder = new SpannableStringBuilder();
+
+                //SETTING COLOR FOR JPY PREFIX THEN APPENDS
+                String liveUSDValuePrefix = ("¥1");
+                SpannableString JPYSpannable = new SpannableString(liveUSDValuePrefix);
+                JPYSpannable.setSpan(new ForegroundColorSpan(Color.RED), 0, liveUSDValuePrefix.length(), 0);
+                builder.append(JPYSpannable);
+
+                //APPENDING "=" (NO COLOR)
+                String equals = " = ";
+                builder.append(equals);
+
+                //SETTING COLOR FOR JPY STRINGS THEN APPENDS
+                String liveUSDValueString = ("$" + String.valueOf(usdJSON));
+                SpannableString USDSpannable= new SpannableString(liveUSDValueString);
+                USDSpannable.setSpan(new ForegroundColorSpan(Color.BLUE), 0, USDSpannable.length(), 0);
+                builder.append(USDSpannable);
+
+                //SET VALUE FOR APPENDED STRINGS (APPENDER OBJECT NAME IS BUILDER)
+                liveUSDValue.setText(builder, TextView.BufferType.SPANNABLE);
             }
         }
     }
@@ -442,7 +499,6 @@ public class MainActivity extends AppCompatActivity {
 
             //---------------------------------------------------------------//
             //AD INFO
-
                 // ADBMOD INSTANTIATION
                 MobileAds.initialize(this, "ca-app-pub-9665161606825012/3253543710");
                 mAdView = findViewById(R.id.adView);
