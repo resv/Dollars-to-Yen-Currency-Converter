@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
@@ -135,6 +136,10 @@ public class MainActivity extends AppCompatActivity {
 
                         //SET VALUE USING THE CONCAT STRINGS
                         liveDateValue.setText(dateValuePrefix);
+
+                        //CHANGING ICON TO CHECK FOR SUCCESSFUL UPDATE
+                        ImageView connectionIcon = (ImageView) findViewById(R.id.connectionIcon);
+                        connectionIcon.setImageResource(R.drawable.checkicon);
                         //---------------------------------------------------------------//
 
             } catch (Exception e) {
