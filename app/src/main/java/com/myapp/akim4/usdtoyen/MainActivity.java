@@ -3,6 +3,7 @@ package com.myapp.akim4.usdtoyen;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Color;
+import android.icu.text.DecimalFormat;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -324,16 +327,24 @@ public class MainActivity extends AppCompatActivity {
             // CONVERT YEN AMOUNT INTO A STRING FOR USABILITY, ADD DECIMAL WITH LIMIT TO THE THOUSANDTHS PLACE
             String amountInYenString = String.format("%.2f", amountInYenDouble);
 
+            //ADDS COMMA TO THE AMOUNTS
+            String amountInDollarsStringFormatted = (NumberFormat.getNumberInstance(Locale.getDefault()).format(Double.valueOf(amountInDollarsString)));
+            String amountInYenStringFormatted = (NumberFormat.getNumberInstance(Locale.getDefault()).format(Double.valueOf(amountInYenString)));
+
             // TOAST USD TO JPY CONVERSION RESULT TO USER
-            Toast.makeText(this, "$" + amountInDollarsString + " (USD) equals to ¥" + amountInYenString + " (JPY)", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "$" + amountInDollarsStringFormatted + " (USD) equals to ¥" + amountInYenStringFormatted + " (JPY)", Toast.LENGTH_LONG).show();
 
-            //RECENT (USD) CONVERSION TEXTVIEW
-            TextView recentConversionValue = (TextView) findViewById(R.id.recentConversionValue);
-            String recentConversionValueString = ("$" + amountInDollarsString +  " = ¥" + amountInYenString);
-            recentConversionValue.setText(recentConversionValueString);
+                //RECENT (USD) CONVERSION TEXTVIEW
+                TextView recentConversionValue = (TextView) findViewById(R.id.recentConversionValue);
 
-            //CLEAR INPUT VALUE
-            editText.setText("");
+                //CONCATS AMOUNTS WITH SYMBOLS
+                String recentConversionValueString = ("$" + amountInDollarsStringFormatted +  " = ¥" + amountInYenStringFormatted);
+
+                //SETS TEXTVIEW WITH THE RESULT
+                recentConversionValue.setText(recentConversionValueString);
+
+                //CLEAR INPUT VALUE
+                editText.setText("");
         }
     }
     // END OF (USD) CONVERSION
@@ -366,17 +377,20 @@ public class MainActivity extends AppCompatActivity {
             // CONVERT DOLLARS AMOUNT INTO A STRING FOR USABILITY, ADD DECIMAL WITH LIMIT TO THE THOUSANDTHS PLACE
             String amountInDollarsString = String.format("%.2f", amountInDollarsDouble);
 
+            //ADDS COMMA TO THE AMOUNTS
+            String amountInYenStringFormatted = (NumberFormat.getNumberInstance(Locale.getDefault()).format(Double.valueOf(amountInYenString)));
+            String amountInDollarsStringFormatted = (NumberFormat.getNumberInstance(Locale.getDefault()).format(Double.valueOf(amountInDollarsString)));
+
             // TOAST JPY TO USD CONVERSION RESULT TO USER
-            Toast.makeText(this, "¥" + amountInYenString + " (JPY) equals to $" + amountInDollarsString + " (USD)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "¥" + amountInYenStringFormatted + " (JPY) equals to $" + amountInDollarsStringFormatted + " (USD)", Toast.LENGTH_SHORT).show();
 
                 //RECENT (JPY) CONVERSION TEXTVIEW
                 TextView recentConversionValue = (TextView) findViewById(R.id.recentConversionValue);
 
-                String amountInYenStringWithSymbol = ("¥" + amountInYenString);
-                String amountInDollarStringsWithSymbol = ("$" + amountInDollarsString);
+                //CONCATS AMOUNTS WITH SYMBOLS
+                String recentConversionValueString = ("¥" + amountInYenStringFormatted + " = $" + amountInDollarsStringFormatted);
 
-                String recentConversionValueString = (amountInYenStringWithSymbol + " = " + amountInDollarStringsWithSymbol);
-
+                //SETS TEXTVIEW WITH THE RESULT
                 recentConversionValue.setText(recentConversionValueString);
 
                 //CLEAR INPUT VALUE
