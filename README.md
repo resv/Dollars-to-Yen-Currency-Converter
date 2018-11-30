@@ -61,7 +61,7 @@ A few of the things you can do with _**Dollars to Yen**_:
 <br>
 
 <p align="center">
-  <img src = "https://imgur.com/LEaCQ00.png" width="500">
+  <img src = "https://imgur.com/17O3mCb.png" width="500">
 </p>
 
 <br>
