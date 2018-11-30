@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="54" />
+                                                <entry key="scalingPercent" value="65" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -35,7 +35,9 @@
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="85bb65" />
-                                      <entry key="foregroundImage" value="C:\Users\akim4\Google Drive\ANDROID GRAPHICAL ASSETS\usdtoyenpngicon.png" />
+                                      <entry key="foregroundImage" value="C:\Users\akim4\Google Drive\ANDROID GRAPHICAL ASSETS\DollarsToYenSS\USDTOYENgoogleICON.png" />
+                                      <entry key="legacyIconShape" value="CIRCLE" />
+                                      <entry key="webIconShape" value="CIRCLE" />
                                     </map>
                                   </option>
                                 </PersistentState>
