@@ -69,6 +69,65 @@ A few of the things you can do with _**Dollars to Yen**_:
 
 ## Release Updates
 
+- **Release: 1.0 (11/16/18)**
+	- First release, if there are any issues please let me know!
+- **Release: 2.0 (11/18/18)**
+   - Resolved an issue with no value conversions, fixed text cutoff.
+- **Release: 3.0 (11/17/18)**
+  - Added icons and renamed app with proper spacing.
+- **Release: 4.0 (11/18/18)**
+  - Added background colors for "Convert" Buttons.
+  - Modified the banner image of both currencies in respects to the button colors.
+  - Edited Toast result by removing "Dollars" wording and replaced with "USD".
+  - Edited Toast result by wrapping "USD" & "YEN" in parenthesis to relieve redundancy.
+  - Modified Admob coding.
+- **Release: 5.0 (11/19/18)**
+  - Changed name of app to "Dollars to Yen"
+  - Fixed the improper use of using the terms "USD", "Dollars", "JPY", & "Yen" all throughout the app.
+  - Layout : fixed scaling and responsiveness and now compatible with all device resolutions.
+  - Fixed Adbmob coding and now runs.
+- **Release: 6.0 (11/19/18)**
+  - Hot fixed admob, next update will focus on live currency values and commas.
+- **Release: 7.0 (11/21/18)**
+  - Added live currency values
+  - Added date of Last currency update
+  - Added "Recent Conversion"
+  - Fixed layout to fit smaller resolutions
+- **Release: 8.0 (11/26/18)**
+  - **UI**
+  - Removed action bar & banner image.
+  - Added date, share, app info button.
+  - Added coloration to the current values.
+  - Swapped rates for more majority of US users’ convenience.
+  - Fixed alignment, resized text, and all buttons shaped to oval.
+
+- FEATURES
+- -      Conversions can be executed by pressing enter on keypad, (dedicated convert button still works as designed)
+- Keyboard now intentionally stays open after conversion.
+- Last input data is cleared once converting.
+- **Release:	9.0 (11/28/18)**
+- **UI**
+- Date info button has been enlarged, content has been updated.
+- Convert Buttons text spacing correction and precise alignment.
+
+- **FEATURES**
+-Added commas to conversion results.
+-Application now runs in Airplane mode, or the loss of data connection.
+-Added connection icon to notify user of successful fetching of live rates.
+- **Release: 10.0 (11/30/18)**
+- **UI**
+-Date info button has been enlarged, content has been updated.
+-Convert Buttons text spacing correction and precise alignment.
+
+- **FEATURES**
+- Added commas to conversion results.
+- Application now runs in Airplane mode, or the loss of data connection.
+- Added connection icon to notify user of successful fetching of live rates.
+
+
+
+
+<br>
 
 ## Contact
 I'd love to talk to you about 
@@ -98,7 +157,6 @@ I'd love to talk to you about
 <br>
 <br>
 <br>
-<br><br>
 <br>
 <br>
 <br>
