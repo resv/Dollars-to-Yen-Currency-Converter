@@ -1,7 +1,7 @@
 <h1 align="center"> Dollars To Yen Currency Converter </h1> <br>
 <p align="center">
   <a href="https://play.google.com/store/apps/details?id=com.myapp.akim4.usdtoyen">
-    <img alt="GitPoint" title="GitPoint" src="https://i.imgur.com/8iY5TIw.png">
+    <img src="https://imgur.com/LEaCQ00.png">
   </a>
 </p>
 
