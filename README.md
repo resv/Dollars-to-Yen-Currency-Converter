@@ -151,18 +151,3 @@ A few of the things you can do with _**Dollars to Yen**_:
     <img src="https://imgur.com/ZcJ77fj.png" width="">
   </a>
 </p>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
