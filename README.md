@@ -100,24 +100,23 @@ A few of the things you can do with _**Dollars to Yen**_:
   - Added coloration to the current values.
   - Swapped rates for more majority of US users’ convenience.
   - Fixed alignment, resized text, and all buttons shaped to oval.
+    - **FEATURES**
+    - Conversions can be executed by pressing enter on keypad, (dedicated convert button still works as designed)
+    - Keyboard now intentionally stays open after conversion.
+    - Last input data is cleared once converting.
 
-- FEATURES
-- -      Conversions can be executed by pressing enter on keypad, (dedicated convert button still works as designed)
-- Keyboard now intentionally stays open after conversion.
-- Last input data is cleared once converting.
-- **Release:	9.0 (11/28/18)**
+- **Release: 9.0 (11/28/18)**
 - **UI**
 - Date info button has been enlarged, content has been updated.
 - Convert Buttons text spacing correction and precise alignment.
-
 - **FEATURES**
--Added commas to conversion results.
--Application now runs in Airplane mode, or the loss of data connection.
--Added connection icon to notify user of successful fetching of live rates.
+- Added commas to conversion results.
+- Application now runs in Airplane mode, or the loss of data connection.
+- Added connection icon to notify user of successful fetching of live rates.
 - **Release: 10.0 (11/30/18)**
 - **UI**
--Date info button has been enlarged, content has been updated.
--Convert Buttons text spacing correction and precise alignment.
+- Date info button has been enlarged, content has been updated.
+- Convert Buttons text spacing correction and precise alignment.
 
 - **FEATURES**
 - Added commas to conversion results.
