@@ -19,9 +19,9 @@
 
 ## Table of Contents
 - [About the Application](#About-the-Application)
-- [Features](#features)
-- [Release Updates](#release-updates)
-- [Contact](#contact)
+- [Features](#Features)
+- [Release Updates](#Release-Updates)
+- [Contact](#Contact)
 
 <br>
 
