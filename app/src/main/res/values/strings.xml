@@ -1,4 +1,23 @@
 <resources>
     <string name="app_name">Dollars To Yen</string>
     <string name="banner_ad_unit_id">ca-app-pub-9665161606825012/3253543710</string>
+    <string name="how_rates_are_updated">How rates are updated...</string>
+    <string name="no_data_connection_default_rates_will_be_displayed_until_a_connection_can_be_established_please_check_your_connection_and_restart_the_app">No Data Connection: Default rates will be displayed until a connection can be established. Please check your connection and restart the app.</string>
+    <string name="currency_rates_are_updated_at_10_00_est_12_00_gmt_9_on_every_working_day_except_on_target_closing_days">Currency rates are updated at 10:00 EST / 12:00 GMT+9 on every working day, except on TARGET closing days.</string>
+    <string name="live_currency_rates_are_published_by_the_european_central_bank">Live currency rates are published by the European Central Bank.</string>
+    <string name="dollars_to_yen">Dollars to Yen</string>
+    <string name="thank_you_for_using_dollars_to_yen">Thank you for using Dollars to Yen!</string>
+    <string name="sharing_this_app_or_leaving_a_review_really_helps_support_this_app">Sharing this app or leaving a review really helps support this app.</string>
+    <string name="rate_app">Rate App!</string>
+    <string name="share_app">Share App!</string>
+    <string name="email_developer">Email Developer</string>
+    <string name="for_feedback_or_issues_please_contact_the_developer">For feedback or issues please contact the developer.</string>
+    <string name="about_developer">About Developer</string>
+    <string name="getting_live_rates">Getting live rates...</string>
+    <string name="convertYenButton">Convert ¥</string>
+    <string name="convertDollarButton">Convert $</string>
+    <string name="recent_conversion">Recent Conversion:</string>
+    <string name="enter_usd">Enter $ (USD)</string>
+    <string name="enter_jpy">Enter ¥ (JPY)</string>
+    <string name="connectionRefresh">TODO</string>
 </resources>

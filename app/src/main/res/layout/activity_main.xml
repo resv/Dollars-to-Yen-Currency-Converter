@@ -48,22 +48,6 @@
         ads:layout_constraintGuide_begin="20dp"
         ads:layout_constraintGuide_percent="1.00" />
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:layout_marginBottom="8dp"
-        android:adjustViewBounds="false"
-        android:scaleType="centerCrop"
-        android:visibility="gone"
-        ads:layout_constraintBottom_toTopOf="@+id/guideline3"
-        ads:layout_constraintHorizontal_bias="0.0"
-        ads:layout_constraintVertical_bias="0.0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/usdtoyen" />
-
     <TextView
         android:id="@+id/recentConversionStatic"
         android:layout_width="wrap_content"
@@ -73,7 +57,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Recent Conversion:"
+        android:text="@string/recent_conversion"
         android:textSize="14sp"
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintStart_toStartOf="parent"
@@ -102,12 +86,13 @@
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
         android:ems="10"
-        android:hint="Enter $ (USD)"
+        android:hint="@string/enter_usd"
         android:imeOptions="actionSend"
         android:inputType="numberDecimal"
         ads:layout_constraintEnd_toStartOf="@+id/convertUsdButton"
         ads:layout_constraintStart_toStartOf="parent"
-        ads:layout_constraintTop_toTopOf="@+id/guideline2" />
+        ads:layout_constraintTop_toTopOf="@+id/guideline2"
+        android:autofillHints="" tools:targetApi="o" />
 
     <EditText
         android:id="@+id/yenAmount"
@@ -118,7 +103,7 @@
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
         android:ems="10"
-        android:hint="Enter ¥ (JPY)"
+        android:hint="@string/enter_jpy"
         android:imeOptions="actionSend"
         android:inputType="numberDecimal"
         ads:layout_constraintEnd_toStartOf="@+id/convertYenButton"
@@ -126,7 +111,8 @@
         ads:layout_constraintTop_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usdAmount" />
+        app:layout_constraintTop_toBottomOf="@+id/usdAmount"
+        android:importantForAutofill="no" tools:targetApi="o" />
 
     <Button
         android:id="@+id/convertUsdButton"
@@ -139,7 +125,7 @@
         android:layout_marginRight="8dp"
         android:background="@drawable/convert_usd_button_rounded"
         android:onClick="convertUsd"
-        android:text="  Convert $  "
+        android:text="@string/convertDollarButton"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="12sp"
         ads:layout_constraintHorizontal_bias="0.5"
@@ -159,7 +145,7 @@
         android:layout_marginRight="8dp"
         android:background="@drawable/convert_yen_button_rounded"
         android:onClick="convertYen"
-        android:text="  Convert ¥  "
+        android:text="@string/convertYenButton"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="12sp"
         ads:layout_constraintHorizontal_bias="0.5"
@@ -178,7 +164,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:gravity="center_vertical|center_horizontal"
-        android:text="..."
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -197,7 +182,6 @@
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
         android:gravity="center_vertical|center_horizontal"
-        android:text="..."
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -214,7 +198,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Getting live rates..."
+        android:text="@string/getting_live_rates"
         android:textColor="@color/common_google_signin_btn_text_light_default"
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintStart_toStartOf="parent"
@@ -229,7 +213,8 @@
         android:layout_marginRight="5dp"
         ads:layout_constraintEnd_toStartOf="@+id/liveDateValue"
         ads:layout_constraintTop_toTopOf="@+id/guideline4"
-        ads:srcCompat="@drawable/xicon" />
+        ads:srcCompat="@drawable/xicon"
+        android:contentDescription="@string/connectionRefresh" />
 
     <Button
         android:id="@+id/dateInfoButton"
