@@ -151,7 +151,7 @@ A few of the things you can do with _**Dollars to Yen**_:
     <img src="https://imgur.com/25fsnGh.png" width="">
   </a>
   <a href="https://play.google.com/store/apps/developer?id=AtomKim">
-    <img src="https://imgur.com/AgztY3X.png" width="">
+    <img src="https://imgur.com/ZN1rnma.png" width="">
   </a>
   <a href="https://www.instagram.com/resvvv/">
     <img src="https://imgur.com/ZcJ77fj.png" width="">
