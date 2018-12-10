@@ -13,11 +13,15 @@
     <string name="email_developer">Email Developer</string>
     <string name="for_feedback_or_issues_please_contact_the_developer">For feedback or issues please contact the developer.</string>
     <string name="about_developer">About Developer</string>
-    <string name="getting_live_rates">Getting live rates...</string>
+    <string name="getting_live_rates">Getting Live Rates...</string>
     <string name="convertYenButton">Convert ¥</string>
     <string name="convertDollarButton">Convert $</string>
     <string name="recent_conversion">Recent Conversion:</string>
     <string name="enter_usd">Enter $ (USD)</string>
     <string name="enter_jpy">Enter ¥ (JPY)</string>
     <string name="connectionRefresh">TODO</string>
+    <string name="connection_successful_live_rates_were_updated_successfully">Connection Successful: Live rates were updated successfully.</string>
+    <string name="connectionSuccessfulIcon">connectionSuccessfulIcon</string>
+    <string name="connectionFailedIcon">connectionFailedIcon</string>
+    <string name="other_apps">Other Apps</string>
 </resources>

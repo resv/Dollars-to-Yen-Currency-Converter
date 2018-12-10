@@ -53,26 +53,39 @@
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView
+        android:id="@+id/infoTextView5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/connection_successful_live_rates_were_updated_successfully"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/connectionSuccessfulIcon" />
+
+    <TextView
         android:id="@+id/infoTextView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="@string/no_data_connection_default_rates_will_be_displayed_until_a_connection_can_be_established_please_check_your_connection_and_restart_the_app"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/InfoTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/connectionFailedIcon" />
 
     <TextView
         android:id="@+id/infoTextView3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:text="@string/currency_rates_are_updated_at_10_00_est_12_00_gmt_9_on_every_working_day_except_on_target_closing_days"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/infoTextView2" />
 
@@ -89,14 +102,35 @@
 
     <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:visibility="visible"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-9665161606825012/3253543710"
         ads:layout_constraintBottom_toTopOf="@+id/guideline2"
         ads:layout_constraintEnd_toStartOf="@+id/guideline4"
-        ads:layout_constraintStart_toStartOf="@+id/guideline3">
-    </com.google.android.gms.ads.AdView>
+        ads:layout_constraintStart_toStartOf="@+id/guideline3"></com.google.android.gms.ads.AdView>
+
+    <ImageView
+        android:id="@+id/connectionSuccessfulIcon"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/connectionSuccessfulIcon"
+        ads:srcCompat="@drawable/checkicon"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/InfoTextView" />
+
+    <ImageView
+        android:id="@+id/connectionFailedIcon"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="12dp"
+        ads:srcCompat="@drawable/xicon"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/infoTextView5"
+        android:contentDescription="@string/connectionFailedIcon" />
 
 </android.support.constraint.ConstraintLayout>

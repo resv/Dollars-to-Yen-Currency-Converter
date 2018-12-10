@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
     <color name="YEN">#fd0000</color>
     <color name="USD">#0006fd</color>
+    <color name="otherAppsColorYellow">#f7ff00</color>
 </resources>

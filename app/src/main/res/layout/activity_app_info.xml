@@ -171,4 +171,15 @@
         app:layout_constraintStart_toEndOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline3" />
 
+    <Button
+        android:id="@+id/otherAppsButton"
+        android:layout_width="172dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/other_apps_button_rounded"
+        android:text="@string/other_apps"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3" />
+
 </android.support.constraint.ConstraintLayout>

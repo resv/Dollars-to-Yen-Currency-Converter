@@ -124,6 +124,12 @@ A few of the things you can do with _**Dollars to Yen**_:
   - Application now runs in Airplane mode, or the loss of data connection.
   - Added connection icon to notify user of successful fetching of live rates.
 
+- **Release: 11.0 (12/10/18)**
+  - Added @String resource for all textviews.
+  - Added "Other Apps" button.                                                  
+  - Fixed internal spelling errors for resources.
+  - Added more detailed information regarding connections to API.
+
 
 
 

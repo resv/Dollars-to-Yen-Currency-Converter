@@ -66,6 +66,20 @@ public class AppInfoActivity extends AppCompatActivity {
             }
         });
 
+        //OTHER APPS BUTTON
+        Button otherAppsButton = (Button) findViewById(R.id.otherAppsButton);
+
+        otherAppsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://play.google.com/store/apps/developer?id=AtomKim"));
+                startActivity(intent);
+            }
+        });
+
+
         //CONTACT DEV BUTTON
         Button contactDevButton = (Button) findViewById(R.id.contactDevButton);
         contactDevButton.setOnClickListener(new View.OnClickListener(){
