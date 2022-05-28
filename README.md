@@ -26,6 +26,7 @@
 <br>
 
 ## About the Application
+(Google has made multiple policy changes, shifting my career focus on cybersecurity so I have not updated this app to get it back on the playstore. Feel free to reach our or use this source code for your applications, would love to hear about it too!)
 
 Real time, up to date currency conversion values of Dollars (USD) and YEN (JPY).
 
